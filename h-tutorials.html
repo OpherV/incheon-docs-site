@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>render/Renderer.js - Documentation</title>
+    <title>Tutorials - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -30,74 +30,30 @@
 
 <div id="main">
     
-    <h1 class="page-title">render/Renderer.js</h1>
+    <h1 class="page-title">Tutorials</h1>
     
 
-    
-
-
-
-    
     <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>'use strict';
 
-/**
- * The Renderer is the component which must *draw* the game on the client.
- * It will be instantiated once on each client, and must implement the draw
- * method.  The draw method will be invoked on every iteration of the browser's
- * render loop.
- */
-class Renderer {
+<header>
+    
+    <ul>
+        <li><a href="h-MyFirstGame.html">My First Game: pong</a></li>
+    
+        <li><a href="h-spaceships.html">Spaaace</a></li>
+    </ul>
+    
+</header>
 
-    /**
-    * Constructor of the Renderer singleton.
-    * @param {GameEngine} gameEngine - Reference to the GameEngine instance.
-    */
-    constructor(gameEngine) {
-        this.gameEngine = gameEngine;
-        gameEngine.on('objectAdded', this.addObject.bind(this));
-        gameEngine.on('objectDestroyed', this.removeObject.bind(this));
-    }
+<article>
+    
+</article>
 
-    /**
-     * Initialize the renderer.
-    */
-    init() {
-        if ((typeof window === 'undefined') || !document) {
-            console.log('renderer invoked on server side.');
-        }
-    }
+</section>
 
-    /**
-     * The main draw function.  This method is called at high frequency,
-     * at the rate of the render loop, which can be 60Hz - 90Hz depending
-     * on the context.
-     */
-    draw() {}
-
-    /**
-     * Handle the addition of a new object to the world.
-     * @param {Object} obj - The object to be added.
-     */
-    addObject(obj) {
-    }
-
-    /**
-     * Handle the removal of an old object from the world.
-     * @param {Object} obj - The object to be removed.
-     */
-    removeObject(obj) {
-    }
-}
-
-module.exports = Renderer;
-</code></pre>
-        </article>
-    </section>
-
-
-
+<style>
+#main > h1{ display: none }
+</style>
 
 </div>
 
