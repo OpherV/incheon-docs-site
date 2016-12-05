@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>ServerEngine - Documentation</title>
+    <title>Serialization and Communication - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -30,246 +30,22 @@
 
     <div id="main">
         
-        <h1 class="page-title">ServerEngine</h1>
+        <h1 class="page-title">Serialization and Communication</h1>
         
 
-        
+        <section>
 
-
-
-
-<section>
-
-<header class="package">
-    
-        <h2>
-        ServerEngine
-        </h2>
-        
-            <div class="class-description"><p>ServerEngine is the main server-side singleton code.
-Extend this class with your own server-side logic, and
-start a single instance.</p>
-<p>This class should not be used to contain the actual
-game logic.  That belongs in the GameEngine class, where the mechanics
-of the gameplay are actually implemented.</p>
-<p>The ServerEngine singleton is typically a lightweight
-implementation, logging gameplay statistics and registering
-user activity and user data.</p>
-<p>The base class implementation is responsible for starting
-the server, initiating each game step, accepting new
-connections and dis-connections, emitting periodic game-state
-updates, and capturing remote user inputs.</p></div>
-        
+<header>
     
 </header>
 
-<article class="package">
-    <div class="container-overview">
-    
-        
-
-    
-    <h2>Constructor</h2>
-    
-
-    <h4 class="name" id="ServerEngine"><span class="type-signature"></span>new ServerEngine<span class="signature">(io, gameEngine, options)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    <p>create a ServerEngine instance</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>io</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">SocketIO</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>the SocketIO server</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>gameEngine</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="GameEngine.html">GameEngine</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>instance of GameEngine</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>server options</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ServerEngine.js.html">ServerEngine.js</a>, <a href="ServerEngine.js.html#line27">line 27</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
+<article>
+    <p>As mentioned in previous chapters, the game world and its associated game objects must be packed on the server side, serialized, and broadcast to all clients at regular intervals.  These game world update are called syncs.</p>
+<p>Serialization requires that each game object define those attributes which must be serialized on every sync.  This attribute list is known as the game object’s netscheme.  The larger a netscheme is, the more data will need to be transferred on every sync.  Therefore care should be taken to minimize the amount of data in the netscheme.</p>
+<p>The serialization process allows for a hierarchy of objects.  This means that the netscheme of one object may include another object which has its own netscheme.</p>
 </article>
 
 </section>
-
-
-
 
     </div>
 
