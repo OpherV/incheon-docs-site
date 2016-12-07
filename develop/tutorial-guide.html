@@ -89,7 +89,12 @@
 </ul>
 <p>As you develop  your game, you will need to implement your own extensions (sub-classes) of the classes above. The core game logic will be implemented in your extension of GameEngine.</p>
 <p>The following diagram shows how these components connect in the overall architecture:</p>
-<h2>Basic Flow</h2><p>The basic flow of a game can be seen as a sequence of <em>game steps</em>. Steps will be executed both on the server and the client. Each step is numbered, and depending on the synchronization strategy, clients may be executing a given step before the corresponding server information has arrived at the client (i.e. extrapolation) or after (i.e. interpolation). Ideally, a given step <em>N</em> represents the same point in game play on both the server and the client. But this is not always the case.</p>
+<p><img src="https://cloud.githubusercontent.com/assets/3702763/20984514/421f44b4-bcc9-11e6-8346-037d15226216.PNG" alt="architecture"></p>
+<h2>The Game as a Sequence of Steps</h2><p>The basic flow of a game can be seen as a sequence of <em>game steps</em>.  This is a basic concept which is true
+for game development and the concept works well for networked games as well.  During a single step, the
+game progresses from time <em>N</em> to time <em>N+1</em>.  The game engine will have to determine the state of the game
+at time <em>N+1</em> by applying physics, taking into account new user inputs, and applying the game mechanics logic.</p>
+<p>In the context of multi-player, networked games, the steps will be executed both on the server and the client. Each step is numbered, and depending on the synchronization strategy, clients may be executing a given step before the corresponding server information has arrived at the client (i.e. extrapolation) or after (i.e. interpolation). Ideally, a given step <em>N</em> represents the same point in game play on both the server and the client.</p>
 <p>The core game logic is implemented in the game engine, so a game step is simply a call to the game engine’s <em>step()</em> method.</p>
 <h2>Server Flow</h2><p>The server logic is implemented by the server engine, which must do the following: (1) it must initialize the game, (2) it must accept connections from players over a socket, (3) it must execute the game loop, by calling the game engine’s <em>step()</em> method at a fixed interval, and (4) it must broadcast regular updates to all the clients at a fixed interval.</p>
 <p>The server engine schedules a step function to be called at a regular interval. The flow is:</p>
