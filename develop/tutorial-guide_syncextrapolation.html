@@ -65,7 +65,7 @@
 </li>
 <li><p>Apply the delta so that the object on the client gradually bends towards the correct position as indicated by the server.</p>
 <ol>
-<li><p>Not all the delta is applied.  A &quot;bending factor&quot; must be specified, to indicate how much of the delta should be applied.  A bending factor of 30% means that 30% of the correction will be applied until the next sync data arrives.</p>
+<li><p>Not all the delta is applied.  A &quot;bending factor&quot; must be specified, to indicate how much of the delta should be applied.  A bending factor of 70% means that only 30% of the position will change, and that this 30% of the correction will be applied incrementally until the next sync data arrives.</p>
 </li>
 <li><p>The delta is not applied in a single step.  Rather, split the correction into incremental corrections that are applied until the next sync data arrives.</p>
 </li>
@@ -81,6 +81,7 @@
 <li><p><strong>Shadow Objects</strong>. The client may create an object which does not yet exist on the server.  For example, if a ship fires a missile, the client must render a missile, even though the missile object is yet to exist on the server.  Until the true missile object will be created on the server, the client will model the missile with a shadow object.</p>
 </li>
 </ol>
+<p>To select this synchronization method, the Client Engine syncOptions must be set to &quot;extrapolate&quot;.  The option &quot;localObjBending&quot; describes the amount of bending (0.0 to 1.0) for local objects, and &quot;remoteObjBending&quot; describes the amount of bending (0.0 to 1.0) for remote objects.  See the client engine options as described in the API Reference: <a href="ClientEngine.html">ClientEngine</a>.</p>
 <p>Next: <a href="tutorial-tutorials.html">Tutorials</a></p>
 </article>
 

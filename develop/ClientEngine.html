@@ -153,14 +153,33 @@ the server.</p></div>
 
             
 
-            <td class="description last"><p>options object</p></td>
-        </tr>
+            <td class="description last"><p>options object</p>
+                <h6>Properties</h6>
+                
 
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>options.autoConnect</code></td>
+                <td class="name"><code>autoConnect</code></td>
             
 
             <td class="type">
@@ -176,14 +195,14 @@ the server.</p></div>
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>if true, the client will automatically attempt connect to server.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>inputOptions.delayInputCount</code></td>
+                <td class="name"><code>delayInputCount</code></td>
             
 
             <td class="type">
@@ -200,6 +219,131 @@ the server.</p></div>
             
 
             <td class="description last"><p>if set, inputs will be delayed by this many steps before they are actually applied on the client.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>syncOptions</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>an object describing the synchronization method.  If not set, will be set to extrapolate, with local object bending set to 0.0 and remote object bending set to 0.6.  If the query-string parameter &quot;sync&quot; is defined, then that value is passed to this object's sync attribute.</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>sync</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>chosen sync option, can be interpolate, extrapolate, or frameSync</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>localObjBending</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>amount of bending towards original client position, after each sync, for local objects</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>remoteObjBending</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>amount of bending towards original client position, after each sync, for remote objects</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -326,7 +470,7 @@ the server.</p></div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line44">line 44</a>
+        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line47">line 47</a>
     </li></ul></dd>
     
 
@@ -386,7 +530,7 @@ the server.</p></div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line56">line 56</a>
+        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line59">line 59</a>
     </li></ul></dd>
     
 
@@ -446,7 +590,7 @@ the server.</p></div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line38">line 38</a>
+        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line41">line 41</a>
     </li></ul></dd>
     
 
@@ -524,7 +668,7 @@ the server.</p></div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line100">line 100</a>
+        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line103">line 103</a>
     </li></ul></dd>
     
 
@@ -705,7 +849,7 @@ typically at the beginning of client-side step processing (see event client.preS
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line243">line 243</a>
+        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line246">line 246</a>
     </li></ul></dd>
     
 
@@ -787,7 +931,7 @@ typically at the beginning of client-side step processing (see event client.preS
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line130">line 130</a>
+        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line133">line 133</a>
     </li></ul></dd>
     
 
