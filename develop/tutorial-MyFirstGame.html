@@ -64,13 +64,13 @@ sub-directories <code>client</code>, <code>server</code>, and <code>common</code
 <h2>Step 1: Create the Game Object Classes</h2><p>We have two kinds of objects in Pong, the paddle and the ball.
 These files extend the <code>DynamicObject</code> class, but are quite simple.
 The boilerplate includes a sample game object class, in the file
-<code>src/common/Player.js</code></p>
+<code>src/common/PlayerAvatar.js</code></p>
 <p>Create the following two classes in the <code>src/common</code> directory:</p>
-<h3>src/common/Paddle.js</h3><p>The Paddle class is a bear-bones object.  It is an exact copy of
-the sample <code>Player.js</code> object, except that it is called <code>Paddle</code>.</p>
+<h3>src/common/Paddle.js</h3><p>The Paddle class is a bear-bones object.  It is similar to
+the sample <code>PlayerAvatar.js</code> object, except that it is called <code>Paddle</code>.</p>
 <pre class="prettyprint source lang-javascript"><code>'use strict';
 
-const DynamicObject  = require('incheon').serialize.DynamicObject;
+const DynamicObject = require('incheon').serialize.DynamicObject;
 
 class Paddle extends DynamicObject {
 
@@ -82,8 +82,8 @@ class Paddle extends DynamicObject {
 module.exports = Paddle;</code></pre><h3>src/common/Ball.js</h3><p>The Ball class is only slightly more complicated than the Paddle
 class.  It adds two getters, which define &quot;bending&quot; properties.
 The bending properties below indicate that the client object's position should
-gradually <em>bend</em> towards the server object's position at a rate of 0.1
-(10%) each time the server sends position updates.  The client object's
+gradually <em>bend</em> towards the server object's position at a rate of 0.8
+(80%) each time the server sends position updates.  The client object's
 velocity should not bend at all, because the ball's velocity can change
 suddenly as it hits a wall or a paddle.
 We also give the Ball an initial velocity when it is created.</p>
@@ -93,7 +93,7 @@ const DynamicObject = require('incheon').serialize.DynamicObject;
 
 class Ball extends DynamicObject {
 
-    get bendingMultiple() { return 0.1; }
+    get bendingMultiple() { return 0.8; }
     get bendingVelocityMultiple() { return 0; }
 
     constructor(id, x, y) {
@@ -127,7 +127,7 @@ Modify the start method to match the following:</li>
     };
 
     this.on('postStep', () => { this.postStepHandleBall(); });
-};</code></pre><ul>
+}</code></pre><ul>
 <li><strong>processInput</strong>: handle user inputs by moving the paddle up or down.
 Modify the processInput method to match the following:</li>
 </ul>
@@ -136,10 +136,11 @@ Modify the processInput method to match the following:</li>
     super.processInput(inputData, playerId);
 
     // get the player paddle tied to the player socket
-    var playerPaddle;
+    let playerPaddle;
 
     for (let objId in this.world.objects) {
-        if (this.world.objects[objId].playerId == playerId) {
+        let o = this.world.objects[objId];
+        if (o.playerId == playerId && o.class == Paddle) {
             playerPaddle = this.world.objects[objId];
             break;
         }
@@ -151,7 +152,7 @@ Modify the processInput method to match the following:</li>
             playerPaddle.y += 5;
         }
     }
-};</code></pre><ul>
+}</code></pre><ul>
 <li><strong>initGame</strong>: create two paddles, a ball, and add these objects to the game world.  This method will be called only on the server.  Add the following initGame method:</li>
 </ul>
 <pre class="prettyprint source lang-javascript"><code>initGame() {
@@ -232,7 +233,7 @@ const Ball = require('./Ball');</code></pre><p>Now add the following methods:</p
             this.ball.velocity.y *= -1;
         }
     }
-};
+}
 
 player1Score() {}
 player2Score() {}</code></pre><p>The end result should be this <a href="https://github.com/OpherV/netpong/blob/master/src/common/NetpongGameEngine.js">file</a>.</p>
@@ -246,12 +247,12 @@ const ServerEngine = require('incheon').ServerEngine;
 
 class MyServerEngine extends ServerEngine {
 
-    constructor(io, gameEngine, inputOptions){
+    constructor(io, gameEngine, inputOptions) {
         super(io, gameEngine, inputOptions);
 
         this.serializer.registerClass(require('../common/Paddle'));
         this.serializer.registerClass(require('../common/Ball'));
-    };
+    }
 
     start(){
         super.start();
@@ -262,32 +263,32 @@ class MyServerEngine extends ServerEngine {
             player1: null,
             player2: null
         };
-    };
+    }
 
-    onPlayerConnected(socket){
+    onPlayerConnected(socket) {
         super.onPlayerConnected(socket);
 
         // attach newly connected player an available paddle
-        if (this.players.player1 === null){
+        if (this.players.player1 === null) {
             this.players.player1 = socket.id;
             this.gameEngine.attachPaddle(0, socket.playerId);
         } else if (this.players.player2 === null) {
             this.players.player2 = socket.id;
             this.gameEngine.attachPaddle(1, socket.playerId);
         }
-    };
+    }
 
-    onPlayerDisconnected(socketId, playerId){
+    onPlayerDisconnected(socketId, playerId) {
         super.onPlayerDisconnected(socketId, playerId);
 
-        if (this.players.player1 == socketId){
-            console.log(&quot;Player 1 disconnected&quot;);
+        if (this.players.player1 == socketId) {
+            console.log('Player 1 disconnected');
             this.players.player1 = null;
-        } else if (this.players.player2 == socketId){
-            console.log(&quot;Player 2 disconnected&quot;);
+        } else if (this.players.player2 == socketId) {
+            console.log('Player 2 disconnected');
             this.players.player2 = null;
         }
-    };
+    }
 }
 
 module.exports = MyServerEngine;</code></pre><h2>Step 4: the Client Code</h2><p>The client-side code must implement a renderer, and a client engine.</p>
@@ -312,9 +313,6 @@ class MyRenderer extends Renderer {
             width: 400,
             height: 400
         };
-    }
-
-    init() {
     }
 
     draw() {
@@ -358,33 +356,23 @@ class MyRenderer extends Renderer {
 
 module.exports = MyRenderer;</code></pre><p>The client engine must register the Paddle and Ball classes just like the
 server did, and keep references to the objects created.</p>
-<h3>src/client/MyClientEngine.js</h3><pre class="prettyprint source lang-js"><code>const ClientEngine = require('incheon').ClientEngine;
-const Synchronizer = require('incheon').Synchronizer;
+<h3>src/client/MyClientEngine.js</h3><pre class="prettyprint source lang-javascript"><code>const ClientEngine = require('incheon').ClientEngine;
 const MyRenderer = require('../client/MyRenderer');
+const Synchronizer = require('incheon').Synchronizer;
 
-const Paddle = require('../common/Paddle');
 const Ball = require('../common/Ball');
 
-class MyClientEngine extends ClientEngine {
 
+class MyClientEngine extends ClientEngine{
     constructor(gameEngine, options) {
         super(gameEngine, options);
 
         // initialize renderer
         this.renderer = new MyRenderer(gameEngine);
 
-        // initialize object synchronization
-        const syncOptions = {
-            extrapolate: {
-                localObjBending: 0.0,
-                remoteObjBending: 0.6
-            }
-        };
-        const synchronizer = new Synchronizer(this, syncOptions);
-        synchronizer.extrapolateObjectSelector = () => { return true; };
+        this.serializer.registerClass(require('../common/Paddle'));
+        this.serializer.registerClass(require('../common/Ball'));
 
-        this.serializer.registerClass(Paddle);
-        this.serializer.registerClass(Ball);
         this.gameEngine.on('client__preStep', this.preStep.bind(this));
 
         this.gameEngine.on('objectAdded', (object) => {
@@ -401,55 +389,40 @@ class MyClientEngine extends ClientEngine {
         // keep a reference for key press state
         this.pressedKeys = {
             down: false,
-            up: false,
-            left: false,
-            right: false,
-            space: false
+            up: false
         };
 
-        document.onkeydown = (e) => { onKeyChange.call(this, e, true); };
-        document.onkeyup = (e) => { onKeyChange.call(this, e, false); };
+        let that = this;
+        document.onkeydown = (e) => { that.onKeyChange(e, true); };
+        document.onkeyup = (e) => { that.onKeyChange(e, false); };
     }
 
     // our pre-step is to process all inputs
     preStep() {
-
+        // continuous press
         if (this.pressedKeys.up) {
-            this.sendInput('up', { movement: true });
+            this.sendInput('up');
         }
 
         if (this.pressedKeys.down) {
-            this.sendInput('down', { movement: true });
-        }
-
-        if (this.pressedKeys.left) {
-            this.sendInput('left', { movement: true });
-        }
-
-        if (this.pressedKeys.right) {
-            this.sendInput('right', { movement: true });
-        }
-
-        if (this.pressedKeys.space) {
-            this.sendInput('space', { movement: true });
+            this.sendInput('down');
         }
     }
-}
 
-function onKeyChange(e, isDown) {
-    e = e || window.event;
+    onKeyChange(e, isDown) {
+        e = e || window.event;
 
-    if (e.keyCode == '38') {
-        this.pressedKeys.up = isDown;
-    } else if (e.keyCode == '40') {
-        this.pressedKeys.down = isDown;
-    } else if (e.keyCode == '37') {
-        this.pressedKeys.left = isDown;
-    } else if (e.keyCode == '39') {
-        this.pressedKeys.right = isDown;
-    } else if (e.keyCode == '32') {
-        this.pressedKeys.space = isDown;
+        if (e.keyCode == '38') {
+            this.pressedKeys.up = isDown;
+        } else if (e.keyCode == '40') {
+            this.pressedKeys.down = isDown;
+        } else if (e.keyCode == '37') {
+            this.pressedKeys.left = isDown;
+        } else if (e.keyCode == '39') {
+            this.pressedKeys.right = isDown;
+        }
     }
+
 }
 
 module.exports = MyClientEngine;</code></pre><h2>Step 4: the Client Visuals</h2><p>The client visuals code are simple HTML objects so we don't discuss them in detail.  See the  <a href="https://github.com/namel/incheongame/blob/netpong/index.html">HTML</a>  and <a href="https://github.com/namel/incheongame/blob/netpong/stylesheets/style.css">CSS</a>.</p>
