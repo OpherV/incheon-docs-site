@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Client Engine - Documentation</title>
+    <title>Architecture of a Multiplayer Game - Documentation</title>
 
 
     <link rel="shortcut icon" href="http://incheon.gg/favicon.ico">
@@ -38,7 +38,7 @@
 
     <div id="main">
         
-        <h1 class="page-title">Client Engine</h1>
+        <h1 class="page-title">Architecture of a Multiplayer Game</h1>
         
 
         <section>
@@ -48,22 +48,86 @@
 </header>
 
 <article>
-    <p>The Client Engine must run the game loop, just like the server engine.  However it also needs to handle game syncs which arrive from the server.  Also, the client engine executes a render loop, which can run at a different rate from the game loop.  The render loop frequency is determined by the display hardware available, and so it may be faster or slower than the game loop frequency.</p>
-<p>A deeper exploration of the game world synchronization algorithms is addressed in separate chapters.  The client will let the synchronization method take care of updating the client's game world in a way which appears visually smooth to the player.</p>
-<p>Additionally, the client engine handles the following functions:</p>
+    <p>The architecture of a multiplayer game must meet the requirements and challenges presented in the prologue &quot;why is making a multiplayer game so hard&quot;.  The architecture cannot wish away these facts: that network delays exist, the delay durations are not consistent or predictable, that players can suddenly disconnect, or that client code cannot be trusted.</p>
+<p>These requirements lead to some basic architectural principles:</p>
 <ol>
-<li><p>Apply user inputs locally, with a delay if so configured</p>
+<li><p>Each game instance will have a single server where the actual game progress and decisions are played out.</p>
 </li>
-<li><p>Transmit user inputs to server</p>
+<li><p>A client will always be out-of-sync with the server, and will need to be able to adjust itself to server decisions.</p>
 </li>
-<li><p>Handle changes in network delay, and step drift.  If the server runs faster (or slower) than the client, then the server is executing steps faster (or slower) than the
-client.  The client engine handles these situations by skipping steps or hurrying steps as required.  Step adjustment is also necessary to recover from a spike in network traffic.</p>
+<li><p>In order to provide a smooth playing experience, a client will need to implement either some predictive calculation (extrapolation), or otherwise present a somewhat out-of-date state to the end user (interpolation).</p>
 </li>
 </ol>
-<p>The Client Engine has many options which must be chosen carefully.  There is an option to auto-connect.  If this is not set, then the client should at some point call the <code>connect()</code> method explicitly.
-Another important option is the sync-options.  Here the client specifies the desired synchronization method and its options.  The available synchronization methods and their options will be described in a separate chapter: guide_synchronization_methods.</p>
-<p>See the <a href="ClientEngine.html">ClientEngine</a> implementation in the API Reference.</p>
-<p>Next: <a href="tutorial-guide_renderer.html">Renderer</a></p>
+<p>The main components of a networked game are:</p>
+<ul>
+<li><p>The <strong>server</strong>. Represented in Incheon by a singleton instance of the <em>ServerEngine</em> class.</p>
+</li>
+<li><p>The <strong>clients</strong>. Represented in Incheon by multiple instances of the <em>ClientEngine</em> class.</p>
+</li>
+<li><p>The <strong>game logic</strong>. Represented in Incheon by the  <em>GameEngine</em> class.</p>
+</li>
+<li><p>The <strong>game world</strong>, which includes multiple <strong>game objects</strong>. The Incheon <em>DynamicObject</em> is the base class for all kinds of game objects.</p>
+</li>
+<li><p>The <strong>renderer</strong>.  A component which draws the game visuals on every iteration of the render loop.  In Incheon this is represented by the <em>Renderer</em> class.</p>
+</li>
+<li><p><strong>Synchronization</strong>. Incheon provides several ways to synchronize between the server and the clients. The game developer must configure which synchronization method works best for their specific game and use case.</p>
+</li>
+</ul>
+<p>As you develop  your game, you will need to implement your own extensions (sub-classes) of the classes above. The core game logic will be implemented in your extension of GameEngine.</p>
+<p>The following diagram shows how these components connect in the overall architecture:</p>
+<p><img src="https://cloud.githubusercontent.com/assets/3702763/20984514/421f44b4-bcc9-11e6-8346-037d15226216.PNG" alt="architecture"></p>
+<h2>The Game as a Sequence of Steps</h2><p>The basic flow of a game can be seen as a sequence of <em>game steps</em>.  This is a basic concept which is true
+for game development generally, and the concept works well for networked games as well.  During a single step, the
+game progresses from time <em>N</em> to time <em>N+1</em>.  The game engine will have to determine the state of the game
+at time <em>N+1</em> by applying physics, taking account of new user inputs, and applying the game mechanics logic.</p>
+<p>In the context of multilayer, networked games, the steps will be executed both on the server and the client. Each step is numbered, and depending on the synchronization strategy, clients may be executing a given step before the corresponding server information has arrived at the client (i.e. extrapolation) or after (i.e. interpolation). Ideally, a given step <em>N</em> represents the same point in game play on both the server and the client.</p>
+<p>The core game logic is implemented in the game engine, so a game step is simply a call to the game engine’s <em>step()</em> method.</p>
+<h2>Server Flow</h2><p>The server logic is implemented by the server engine, which must do the following: (1) it must initialize the game, (2) it must accept connections from players over a socket, (3) it must execute the game loop, by calling the game engine’s <em>step()</em> method at a fixed interval, and (4) it must broadcast regular updates to all the clients at a fixed interval.</p>
+<p>The server engine schedules a step function to be called at a regular interval. The flow is:</p>
+<ul>
+<li><p>ServerEngine - <em>start of a single server step</em></p>
+<ul>
+<li><p>GameEngine - read and process any inputs that arrived from clients since the previous step</p>
+</li>
+<li><p>GameEngine - <em>start of a single game step</em></p>
+<ul>
+<li>PhysicsEngine - handle physics step</li>
+</ul>
+</li>
+<li><p>If it is time to broadcast a new sync</p>
+<ul>
+<li>for each player: transmit a &quot;world update&quot;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Client Flow</h2><p>The client flow is more complicated than the server, for two reasons.  First it must listen to syncs which have arrived from the server, and reconcile the data with its own game state.  Second, it must invoke the renderer to draw the game state.</p>
+<ul>
+<li><p>ClientEngine - <em>start of a single client step</em></p>
+<ul>
+<li><p>check inbound messages / syncs</p>
+</li>
+<li><p>capture user inputs that have occurred since previous step</p>
+</li>
+<li><p>transmit user inputs to server</p>
+</li>
+<li><p>apply user inputs locally</p>
+</li>
+<li><p>GameEngine - <em>start of a single game step</em></p>
+<ul>
+<li>PhysicsEngine - handle physics step</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>ClientEngine - <em>start of a single render step</em></p>
+<ul>
+<li>Renderer - draw</li>
+</ul>
+</li>
+</ul>
+<p>Next: <a href="tutorial-guide_gameengine.html">Game Engine</a></p>
 </article>
 
 </section>

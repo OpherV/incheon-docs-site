@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Client Engine - Documentation</title>
+    <title>Community - Documentation</title>
 
 
     <link rel="shortcut icon" href="http://incheon.gg/favicon.ico">
@@ -38,7 +38,7 @@
 
     <div id="main">
         
-        <h1 class="page-title">Client Engine</h1>
+        <h1 class="page-title">Community</h1>
         
 
         <section>
@@ -48,22 +48,21 @@
 </header>
 
 <article>
-    <p>The Client Engine must run the game loop, just like the server engine.  However it also needs to handle game syncs which arrive from the server.  Also, the client engine executes a render loop, which can run at a different rate from the game loop.  The render loop frequency is determined by the display hardware available, and so it may be faster or slower than the game loop frequency.</p>
-<p>A deeper exploration of the game world synchronization algorithms is addressed in separate chapters.  The client will let the synchronization method take care of updating the client's game world in a way which appears visually smooth to the player.</p>
-<p>Additionally, the client engine handles the following functions:</p>
-<ol>
-<li><p>Apply user inputs locally, with a delay if so configured</p>
+    <p>We make great efforts to maintain an active, positive, friendly and inclusive community around Incheon and game development.</p>
+<h3>Starting out</h3><p>To get a bird's eye view on what's Incheon all about and how to use it to make a multiplayer game, we recommend reading the guide: architecture</p>
+<p>If you're more of the learning-by-doing type, you can start with the first tutorial, <a href="http://docs.incheon.gg/develop/tutorial-MyFirstGame.html">My first game: Pong</a> which contains step-by-step instructions on how to implement a networked version of this classic game.</p>
+<h3>Joining the discussion</h3><p>You're welcome to join the <a href="http://slack.incheon.gg">Incehon Slack</a> to hang out and engage in active discussion with the project maintainers and fellow game developers.</p>
+<h3>Keeping in touch</h3><p>Follow <a href="http://twitter.com/IncheonGG">IncheonGG</a> on Twitter to hear the latest and see what others are doing with Incheon</p>
+<h3>Getting help</h3><p>Feel free to ask anything on <a href="http://stackoverflow.com/questions/tagged/incheon">Stack Overflow</a>. We keep an eye out for questions!</p>
+<h3>Helping out</h3><p>Incheon is an open source project, and as such we welcome any contribution.</p>
+<ul>
+<li><p>Spreading the word, posting or tweeting about Incheon in social media using the @incheongg tag. The larger the community, the more fun we have and the faster development can move!</p>
 </li>
-<li><p>Transmit user inputs to server</p>
+<li><p>Improving the documentation: fixing typos, expanding, clarifying or writing new articles</p>
 </li>
-<li><p>Handle changes in network delay, and step drift.  If the server runs faster (or slower) than the client, then the server is executing steps faster (or slower) than the
-client.  The client engine handles these situations by skipping steps or hurrying steps as required.  Step adjustment is also necessary to recover from a spike in network traffic.</p>
+<li><p>Fixing bugs, or adding new functionality. A good place to start would be issues on Github with a status of <strong><a href="https://github.com/OpherV/Incheon/issues?q=is%3Aissue+is%3Aopen+label%3A%22PR+welcome%22">&quot;PR Welcome&quot;</a></strong>. Make sure to open pull requests against the develop branch.</p>
 </li>
-</ol>
-<p>The Client Engine has many options which must be chosen carefully.  There is an option to auto-connect.  If this is not set, then the client should at some point call the <code>connect()</code> method explicitly.
-Another important option is the sync-options.  Here the client specifies the desired synchronization method and its options.  The available synchronization methods and their options will be described in a separate chapter: guide_synchronization_methods.</p>
-<p>See the <a href="ClientEngine.html">ClientEngine</a> implementation in the API Reference.</p>
-<p>Next: <a href="tutorial-guide_renderer.html">Renderer</a></p>
+</ul>
 </article>
 
 </section>
