@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Game Engine - Documentation</title>
+    <title>community - Documentation</title>
 
 
     <link rel="shortcut icon" href="http://incheon.gg/favicon.ico">
@@ -38,7 +38,7 @@
 
     <div id="main">
         
-        <h1 class="page-title">Game Engine</h1>
+        <h1 class="page-title">community</h1>
         
 
         <section>
@@ -48,18 +48,21 @@
 </header>
 
 <article>
-    <p>The Game Engine contains the core game logic.  It understands user inputs, and applies them to the game.  It will fire missiles, hit aliens, boost spaceships, and apply magic spells.  The primary game engine method is the step method, which progresses the game from step <em>N</em> to step <em>N+1</em>, given the inputs that arrived since step <em>N-1</em>.</p>
-<p>When the game engine step has completed, each game object must have it’s new current position updated, along with health, power, and any other game attributes your game derives.</p>
-<p>It is important to take note of the following architectural requirements:</p>
-<ol>
-<li><p>The Game Engine may include some functions which will only run on the server, and these functions should be called directly by the server engine when necessary.  For example, there may be a function to handle the score reporting.  It is important to isolate server-only logic in a clear way.</p>
+    <p>We make great efforts to maintain an active, positive, friendly and inclusive community around Incheon and game development.</p>
+<h3>Starting out</h3><p>To get a bird's eye view on how what's Incheon all about and how to use it to make a multiplayer game, we recommend reading the <a href="tutorial-guide.html">Architecture of a Multiplayer Game</a></p>
+<p>If you're more of the learning-by-doing type, you can start with the first tutorial, <a href="http://docs.incheon.gg/develop/tutorial-MyFirstGame.html">My first game: Pong</a> which contains step-by-step instructions on how to implement a networked version of this classic game.</p>
+<h3>Joining the discussion</h3><p>You're welcome to join the <a href="http://slack.incheon.gg">Incehon Slack</a> to hang out and engage in active discussion with the project maintainers and fellow game developers.</p>
+<h3>Keeping in touch</h3><p>Follow <a href="http://twitter.com/IncheonGG">IncheonGG</a> on Twitter to hear the latest and see what others are doing with Incheon</p>
+<h3>Getting help</h3><p>Feel free to ask anything on <a href="http://stackoverflow.com/questions/tagged/incheon">Stack Overflow</a>. We keep an eye out for questions!</p>
+<h3>Helping out</h3><p>Incheon is an open source project, and as such we welcome any contribution.</p>
+<ul>
+<li><p>Spreading the word, posting or tweeting about Incheon in social media using the @incheongg tag. The larger the community, the more fun we have and the faster development can move!</p>
 </li>
-<li><p>On clients which use extrapolated synchronization, a given game step is often re-enacted following the arrival of a sync from the server.  These &quot;re-enactment&quot; steps are flagged, and the game engine must ensure that the its step method does not have any side-effects when the &quot;re-enactment&quot; flag is set.</p>
+<li><p>Improving the documentation: fixing typos, expanding, clarifying or writing new articles</p>
 </li>
-</ol>
-<p>Lastly, the game engine also provides a useful event emitter which reports on the progress of the game.  A typical game will use these events to trigger any required logic with specific timing. Events include pre-step, post-step, player-joined, object-added, etc.  Refer to the Events section of the API Reference for a complete list.</p>
-<p>See the <a href="GameEngine.html">GameEngine</a> implementation in the API Reference.</p>
-<p>Next: <a href="tutorial-guide_serverengine.html">Server Engine</a></p>
+<li><p>Fixing bugs, or adding new functionality. A good place to start would be issues on Github with a status of <strong><a href="https://github.com/OpherV/Incheon/issues?q=is%3Aissue+is%3Aopen+label%3A%22PR+welcome%22">&quot;PR Welcome&quot;</a></strong>. Make sure to open pull requests against the develop branch.</p>
+</li>
+</ul>
 </article>
 
 </section>
