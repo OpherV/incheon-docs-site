@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>DynamicObject - Documentation</title>
+
+
+    <link rel="shortcut icon" href="http://incheon.gg/favicon.ico">
+    <link rel="icon" sizes="16x16 32x32 64x64" href="http://incheon.gg/favicon.ico">
+    <link rel="icon" type="image/png" sizes="196x196" href="http://incheon.gg/favicon-192.png">
+    <link rel="icon" type="image/png" sizes="160x160" href="http://incheon.gg/favicon-160.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="http://incheon.gg/favicon-96.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="http://incheon.gg/favicon-64.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="http://incheon.gg/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="http://incheon.gg/favicon-16.png">
+        
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="https://file.myfontastic.com/DeXq9523CzrFERZkXSzP7D/icons.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.8.0/styles/atelier-sulphurpool-light.min.css">
+</head>
+<body>
+
+    <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+    <label for="nav-trigger" class="navicon-button x">
+      <div class="navicon"></div>
+    </label>
+
+    <label for="nav-trigger" class="overlay"></label>
+
+    <nav>
+        <h2 class="home"><a href="index.html">Incheon</a></h2><h2>Concepts</h2><ul class="tutorials"><li><span class='category'>Introduction<ul><li><a href="tutorial-introduction.html">Introduction</a></li><li><a href="tutorial-introduction_prologue.html">Prologue</a></li><li><a href="tutorial-introduction_community.html">Community</a></li><li><a href="tutorial-introduction_roadmap.html">Development Roadmap</a></li></ul></li><li><span class='category'>Overview<ul><li><a href="tutorial-overview_architecture.html">Architecture of a Multiplayer Game</a></li><li><a href="tutorial-guide_gameengine.html">Game Engine</a></li><li><a href="tutorial-guide_serverengine.html">Server Engine</a></li><li><a href="tutorial-guide_clientengine.html">Client Engine</a></li><li><a href="tutorial-guide_renderer.html">Renderer</a></li><li><a href="tutorial-guide_gameworld.html">Game World and Game Objects</a></li><li><a href="tutorial-guide_serialization.html">Serialization and Communication</a></li></ul></li><li><span class='category'>Synchronization Methods<ul><li><a href="tutorial-guide_syncinterpolation.html">Interpolation</a></li><li><a href="tutorial-guide_syncextrapolation.html">Extrapolation</a></li></ul></li><li><span class='category'>Tutorials<ul><li><a href="tutorial-MyFirstGame.html">My First Game: Pong</a></li><li><a href="tutorial-spaceships.html">Spaaace</a></li></ul></li><li><span class='category'>Extras<ul><li><a href="tutorial-guide_tuningdebugging.html">Fine Tuning and Debugging</a></li><li><a href="tutorial-furtherreading.html">Further Reading</a></li></ul></li></ul><h2>API Reference</h2><h3 class="classes">Classes</h3><ul><li><a href="ClientEngine.html">ClientEngine</a><ul class='methods'><li data-type='method'><a href="ClientEngine.html#connect">connect</a></li><li data-type='method'><a href="ClientEngine.html#isOwnedByPlayer">isOwnedByPlayer</a></li><li data-type='method'><a href="ClientEngine.html#sendInput">sendInput</a></li><li data-type='method'><a href="ClientEngine.html#start">start</a></li></ul></li><li><a href="DynamicObject.html">DynamicObject</a><ul class='methods'><li data-type='method'><a href="DynamicObject.html#init">init</a></li><li data-type='method'><a href="DynamicObject.html#toString">toString</a></li></ul></li><li><a href="GameEngine.html">GameEngine</a><ul class='methods'><li data-type='method'><a href="GameEngine.html#addObjectToWorld">addObjectToWorld</a></li><li data-type='method'><a href="GameEngine.html#on">on</a></li><li data-type='method'><a href="GameEngine.html#once">once</a></li><li data-type='method'><a href="GameEngine.html#processInput">processInput</a></li><li data-type='method'><a href="GameEngine.html#removeListener">removeListener</a></li><li data-type='method'><a href="GameEngine.html#removeObjectFromWorld">removeObjectFromWorld</a></li><li data-type='method'><a href="GameEngine.html#start">start</a></li></ul></li><li><a href="Renderer.html">Renderer</a><ul class='methods'><li data-type='method'><a href="Renderer.html#addObject">addObject</a></li><li data-type='method'><a href="Renderer.html#draw">draw</a></li><li data-type='method'><a href="Renderer.html#init">init</a></li><li data-type='method'><a href="Renderer.html#removeObject">removeObject</a></li></ul></li><li><a href="Serializer.html">Serializer</a><ul class='methods'><li data-type='method'><a href="Serializer.html#addCustomType">addCustomType</a></li><li data-type='method'><a href="Serializer.html#registerClass">registerClass</a></li></ul></li><li><a href="ServerEngine.html">ServerEngine</a></li></ul><h3 class="events">Events</h3><ul><li><a href="GameEngine.html#event:client__postInput">client__postInput</a></li><li><a href="GameEngine.html#event:client__postStep">client__postStep</a></li><li><a href="GameEngine.html#event:client__preInput">client__preInput</a></li><li><a href="GameEngine.html#event:client__preStep">client__preStep</a></li><li><a href="GameEngine.html#event:client__syncReceived">client__syncReceived</a></li><li><a href="GameEngine.html#event:objectAdded">objectAdded</a></li><li><a href="GameEngine.html#event:objectDestroyed">objectDestroyed</a></li><li><a href="GameEngine.html#event:playerDisconnected">playerDisconnected</a></li><li><a href="GameEngine.html#event:playerJoined">playerJoined</a></li><li><a href="GameEngine.html#event:postStep">postStep</a></li><li><a href="GameEngine.html#event:preStep">preStep</a></li><li><a href="GameEngine.html#event:server__inputReceived">server__inputReceived</a></li><li><a href="GameEngine.html#event:server__postStep">server__postStep</a></li><li><a href="GameEngine.html#event:server__preStep">server__preStep</a></li><li><a href="GameEngine.html#event:syncReceived">syncReceived</a></li></ul>
+    </nav>
+
+    <div id="main">
+        
+        <h1 class="page-title">DynamicObject</h1>
+        
+
+        
+
+
+
+
+<section>
+
+<header class="package">
+    
+        <h2>
+        DynamicObject
+        </h2>
+        
+            <div class="class-description"><p>DynamicObject is the base class of your game's objects.  It defines the
+base object which can move around in the game world.  The
+extensions of this object (the subclasses)
+will be periodically synchronized from the server to every client.</p>
+<p>The dynamic objects have pseudo-physical properties, which
+allow the client to extrapolate the position
+of dynamic objects in-between server updates.</p></div>
+        
+    
+</header>
+
+<article class="package">
+    <div class="container-overview">
+    
+        
+
+    
+    <h2>Constructor</h2>
+    
+
+    <h4 class="name" id="DynamicObject"><span class="type-signature"></span>new DynamicObject<span class="signature">(id, x, y)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Creates an instance of a dynamic object.
+Override to provide starting values for position, velocity, etc.
+The object ID should be the next value provided by <code>world.idCount</code></p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the object id</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>x</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>position x-value</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>y</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>position y-value</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="serialize_DynamicObject.js.html">serialize/DynamicObject.js</a>, <a href="serialize_DynamicObject.js.html#line18">line 18</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id=".bendingMultiple"><span class="type-signature">(static) </span>bendingMultiple<span class="type-signature"> :Number</span></h4>
+
+
+
+
+<div class="description">
+    <p>The bending multiple is a getter, which returns the
+amount of bending.
+For example, if this value is set to 0.8, then the object's position
+on the client side will slowly bend (by 20% on every server update) towards
+the definitive position as indicated by the server.
+When this value is zero, the object's position
+on the client will be set to the server's object's position exactly.
+When this value is 1.0, the client ignores the server object's position.
+When this value is null, the bending is taken from the synchronization
+defaults.  Set this to zero for objects whose position
+jumps suddenly - because the game intended a jump, not a gradual bend.</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="serialize_DynamicObject.js.html">serialize/DynamicObject.js</a>, <a href="serialize_DynamicObject.js.html#line185">line 185</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".bendingVelocityMultiple"><span class="type-signature">(static) </span>bendingVelocityMultiple<span class="type-signature"> :Number</span></h4>
+
+
+
+
+<div class="description">
+    <p>The velocity bending multiple is a getter, which returns the
+amount of velocity bending.
+For example, if this value is set to 0.8, then the object's velocity
+on the client side will slowly bend (by 20% on every server update) towards the
+definitive velocity as indicated by the server, on every server update.
+You will need to set this to 1.0 for objects whose velocity jumps
+suddenly - because your game intended a jump in velocity, not a gradual
+bend.</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="serialize_DynamicObject.js.html">serialize/DynamicObject.js</a>, <a href="serialize_DynamicObject.js.html#line202">line 202</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".maxSpeed"><span class="type-signature">(static) </span>maxSpeed<span class="type-signature"> :Number</span></h4>
+
+
+
+
+<div class="description">
+    <p>The maximum velocity allowed.  If returns null then ignored.</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="serialize_DynamicObject.js.html">serialize/DynamicObject.js</a>, <a href="serialize_DynamicObject.js.html#line216">line 216</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".netScheme"><span class="type-signature">(static) </span>netScheme<span class="type-signature"> :Object</span></h4>
+
+
+
+
+<div class="description">
+    <p>The netScheme is a dictionary of attributes in this game
+object.  The attributes listed in the netScheme are those exact
+attributes which will be serialized and sent from the server
+to each client on every server update.
+The netScheme member is implemented as a getter.</p>
+<p>You may choose not to implement this method, in which
+case your object only transmits the default attributes
+which are already part of <a href="DynamicObject.html">DynamicObject</a>.
+But if you choose to add more attributes, make sure
+the return value includes the netScheme of the super class.</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="serialize_DynamicObject.js.html">serialize/DynamicObject.js</a>, <a href="serialize_DynamicObject.js.html#line20">line 20</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>static get netScheme() {
+      return Object.assign({
+          mojo: { type: Serializer.TYPES.UINT8 },
+        }, super.netScheme);
+    }</code></pre>
+
+
+
+        
+            
+<h4 class="name" id="acceleration"><span class="type-signature"></span>acceleration<span class="type-signature"> :Number</span></h4>
+
+
+
+
+<div class="description">
+    <p>acceleration per step</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="serialize_DynamicObject.js.html">serialize/DynamicObject.js</a>, <a href="serialize_DynamicObject.js.html#line131">line 131</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="angle"><span class="type-signature"></span>angle<span class="type-signature"> :Number</span></h4>
+
+
+
+
+<div class="description">
+    <p>object orientation angle</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="serialize_DynamicObject.js.html">serialize/DynamicObject.js</a>, <a href="serialize_DynamicObject.js.html#line101">line 101</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="id"><span class="type-signature"></span>id<span class="type-signature"> :Number</span></h4>
+
+
+
+
+<div class="description">
+    <p>ID of this object's instance.  Each instance has an ID which is unique across the entire
+game world, including the server and all the clients.  In extrapolation mode,
+the client may have an object instance which does not yet exist on the server,
+these objects are known as shadow objects.  The ID value for shadow objects
+is chosen in the range of values reserved for the client, the clientIDSpace,
+and is unique only for that client.</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="serialize_DynamicObject.js.html">serialize/DynamicObject.js</a>, <a href="serialize_DynamicObject.js.html#line77">line 77</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="isAccelerating"><span class="type-signature"></span>isAccelerating<span class="type-signature"> :Boolean</span></h4>
+
+
+
+
+<div class="description">
+    <p>should accelerate by <a href="DynamicObject.html#acceleration">DynamicObject#acceleration</a> on next step</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="serialize_DynamicObject.js.html">serialize/DynamicObject.js</a>, <a href="serialize_DynamicObject.js.html#line119">line 119</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="isRotatingLeft"><span class="type-signature"></span>isRotatingLeft<span class="type-signature"> :Boolean</span></h4>
+
+
+
+
+<div class="description">
+    <p>should rotate left by <a href="DynamicObject.html#rotationSpeed">DynamicObject#rotationSpeed</a> on next step</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="serialize_DynamicObject.js.html">serialize/DynamicObject.js</a>, <a href="serialize_DynamicObject.js.html#line107">line 107</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="isRotatingRight"><span class="type-signature"></span>isRotatingRight<span class="type-signature"> :Boolean</span></h4>
+
+
+
+
+<div class="description">
+    <p>should rotate right by <a href="DynamicObject.html#rotationSpeed">DynamicObject#rotationSpeed</a> on next step</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="serialize_DynamicObject.js.html">serialize/DynamicObject.js</a>, <a href="serialize_DynamicObject.js.html#line113">line 113</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="playerId"><span class="type-signature"></span>playerId<span class="type-signature"> :Number</span></h4>
+
+
+
+
+<div class="description">
+    <p>ID of player who created this object</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="serialize_DynamicObject.js.html">serialize/DynamicObject.js</a>, <a href="serialize_DynamicObject.js.html#line83">line 83</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="rotationSpeed"><span class="type-signature"></span>rotationSpeed<span class="type-signature"> :Number</span></h4>
+
+
+
+
+<div class="description">
+    <p>angle rotation per step</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="serialize_DynamicObject.js.html">serialize/DynamicObject.js</a>, <a href="serialize_DynamicObject.js.html#line125">line 125</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="velocity"><span class="type-signature"></span>velocity<span class="type-signature"> :Point</span></h4>
+
+
+
+
+<div class="description">
+    <p>velocity of object</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="serialize_DynamicObject.js.html">serialize/DynamicObject.js</a>, <a href="serialize_DynamicObject.js.html#line144">line 144</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="x"><span class="type-signature"></span>x<span class="type-signature"> :Number</span></h4>
+
+
+
+
+<div class="description">
+    <p>position x-coordinate</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="serialize_DynamicObject.js.html">serialize/DynamicObject.js</a>, <a href="serialize_DynamicObject.js.html#line89">line 89</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="y"><span class="type-signature"></span>y<span class="type-signature"> :Number</span></h4>
+
+
+
+
+<div class="description">
+    <p>position y-coordinate</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="serialize_DynamicObject.js.html">serialize/DynamicObject.js</a>, <a href="serialize_DynamicObject.js.html#line95">line 95</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="init"><span class="type-signature"></span>init<span class="signature">(options)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Initialize the object.
+Extend this method if you have object initialization logic.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Your object's options</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="serialize_DynamicObject.js.html">serialize/DynamicObject.js</a>, <a href="serialize_DynamicObject.js.html#line228">line 228</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="toString"><span class="type-signature"></span>toString<span class="signature">()</span><span class="type-signature"> &rarr; {String}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Formatted textual description of the dynamic object.
+The output of this method is used to describe each instance in the traces,
+which significantly helps in debugging.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="serialize_DynamicObject.js.html">serialize/DynamicObject.js</a>, <a href="serialize_DynamicObject.js.html#line159">line 159</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>description - a string describing the DynamicObject</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">String</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+    </div>
+
+    <br class="clear">
+
+    <footer>
+        Did you find a mistake? Do you have an improvement? <a href="https://github.com/OpherV/Incheon/issues">Let us know!</a>
+    </footer>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-88335360-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    <script src="https://use.typekit.net/lai1bbe.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <script src="scripts/linenumber.js"></script>
+</body>
+</html>
