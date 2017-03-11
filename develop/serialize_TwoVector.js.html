@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Extras - Documentation</title>
+    <title>serialize/TwoVector.js - Documentation</title>
 
 
     <link rel="shortcut icon" href="http://incheon.gg/favicon.ico">
@@ -38,26 +38,113 @@
 
     <div id="main">
         
-        <h1 class="page-title">Extras</h1>
+        <h1 class="page-title">serialize/TwoVector.js</h1>
         
 
-        <section>
+        
 
-<header>
-    
-    <ul>
-        <li><a href="tutorial-guide_tuningdebugging.html">Fine Tuning and Debugging</a></li>
-    
-        <li><a href="tutorial-furtherreading.html">Further Reading</a></li>
-    </ul>
-    
-</header>
 
-<article>
-    
-</article>
 
-</section>
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+const Serializable = require('./Serializable');
+const Serializer = require('./Serializer');
+
+/**
+ * A TwoVector is a geometric object which is completely described
+ * by two values.
+ */
+class TwoVector extends Serializable {
+
+    static get netScheme() {
+        return {
+            x: { type: Serializer.TYPES.FLOAT32 },
+            y: { type: Serializer.TYPES.FLOAT32 }
+        };
+    }
+
+    /**
+    * Creates an instance of a TwoVector.
+    * @param {Number} x - first value
+    * @param {Number} y - second value
+    * @return {TwoVector} v - the new TwoVector
+    */
+    constructor(x, y) {
+        super();
+        this.x = x;
+        this.y = y;
+
+        return this;
+    }
+
+    /**
+     * Formatted textual description of the TwoVector.
+     * @return {String} description
+     */
+    toString() {
+        function round3(x) { return Math.round(x * 1000) / 1000; }
+        return `(${round3(this.x)}, ${round3(this.y)})`;
+    }
+
+    set(x, y) {
+        this.x = x;
+        this.y = y;
+        return this;
+    }
+
+    multiplyScalar(s) {
+        this.x *= s;
+        this.y *= s;
+
+        return this;
+    }
+
+    add(other) {
+        this.x += other.x;
+        this.y += other.y;
+
+        return this;
+    }
+
+    subtract(other) {
+        this.x -= other.x;
+        this.y -= other.y;
+
+        return this;
+    }
+
+    length() {
+        return Math.sqrt(this.x * this.x + this.y * this.y);
+    }
+
+    normalize() {
+        this.multiplyScalar(1 / this.length());
+        return this;
+    }
+
+    copy(sourceObj) {
+        this.x = sourceObj.x;
+        this.y = sourceObj.y;
+
+        return this;
+    }
+
+    lerp(target, p) {
+        this.x += (target.x - this.x) * p;
+        this.y += (target.y - this.y) * p;
+    }
+}
+
+module.exports = TwoVector;
+</code></pre>
+        </article>
+    </section>
+
+
+
 
     </div>
 
