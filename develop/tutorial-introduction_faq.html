@@ -58,6 +58,19 @@
 <h3>2. Does Incheon preserve state?</h3><p>Since Incheon is designed for real-time calculation of position, running typically at 60 steps per second, state-preservation is not a primary concern.  However, this has been requested in the past.  If you’re interested in this feature please upvote the following <a href="https://github.com/OpherV/Incheon/issues/31">feature request</a>.</p>
 <h3>3. How do I implement chat services with Incheon?</h3><p>It’s preferred that non-real time communication is handled by a different server than the one which runs the game state, therefore chat services are outside the scope of Incheon. The preferred approach is to use an existing chat service together with Incheon in your game.  There is a feature request to provide a sample game which demonstrates Incheon working together with a third-party chat service. If you’re interested in this feature please upvote the following <a href="https://github.com/OpherV/Incheon/issues/32">feature request</a>.</p>
 <h3>4. What is in the Incheon Roadmap?</h3><p>See the <a href="http://docs.incheon.gg/develop/tutorial-introduction_roadmap.html">Incheon Roadmap</a>.  Some of the major planned features include UDP support, and Visual Debugging.</p>
+<h2>Incheon Packaging / Transpiling</h2><h3>1. Can I use incheon with babel?</h3><p>Yes! But since incheon exports es6 code, you might need to include it in your babel configuration so that it gets transpiled with the rest of your code. This can be done using the include option in your .babelrc or webpack.config file;</p>
+<pre class="prettyprint source lang-javascript"><code>  {
+      test: /\.js$/,
+      include: [
+          path.resolve(__dirname, 'src'),
+          path.resolve(__dirname, 'node_modules/incheon'),
+          fs.realpathSync('./node_modules/incheon')
+      ],
+      loader: 'babel-loader',
+      query: {
+          presets: ['es2015']
+      }
+  }</code></pre>
 </article>
 
 </section>
