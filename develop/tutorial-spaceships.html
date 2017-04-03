@@ -50,14 +50,14 @@
 <article>
     <h1>Lance Game Tutorial</h1><p>This 30-minute tutorial will guide you in the building of a relatively simple
 javascript networked game.  It is meant as a more advanced
-tutorial, a follow-up to <a href="https://incheon.gg/docs/tutorials/MyFirstLanceGame.html">My First Lance Game</a>.
+tutorial, a follow-up to <a href="http://docs.lance.gg/develop/tutorial-MyFirstGame.html">My First Lance Game</a>.
 This tutorial repeats the environment setup, but goes further in-depth,
 introducing the concepts and basic components of a
 networked game,
 and sequence flows on the server and the clients.</p>
-<p>All the code in this tutorial references the <a href="https://github.com/OpherV/spaaace/tree/tutorial">spaaace</a> repository - so
+<p>All the code in this tutorial references the <a href="https://github.com/lance-gg/spaaace">spaaace</a> repository - so
 first, clone that repository to see the referenced files:</p>
-<pre class="prettyprint source lang-shell"><code>git clone https://github.com/OpherV/spaaace --branch tutorial
+<pre class="prettyprint source lang-shell"><code>git clone https://github.com/lance-gg/spaaace
 cd spaaace
 yarn install</code></pre><h2>The Components of a Networked Game</h2><p>The networked game is architected around the following components:</p>
 <ul>
@@ -75,8 +75,8 @@ Steps will be executed both on the server and the client.  Each step is numbered
 and depending on the synchronization strategy, clients may be executing a given
 step before the corresponding state data has arrived from the server (i.e. extrapolation) or after (i.e. interpolation).
 Ideally, a given step <em>N</em> represents the same point in game play on both the server
-and the client.  But this is not always the case.</p>
-<h3>Server Flow:</h3><p>The server main entry point is a simple javascript file which initializes an instance of an extended <code>ServerEngine</code> class and an instance of an extended <code>GameEngine</code> class. In our tutorial the file is called <a href="https://github.com/OpherV/spaaace/blob/master/main.js"><code>main.js</code></a>.</p>
+and the client, and occurs at the same time.  But this is not always the case.</p>
+<h3>Server Flow:</h3><p>The server main entry point is a simple javascript file which initializes an instance of an extended <code>ServerEngine</code> class and an instance of an extended <code>GameEngine</code> class. In our tutorial the file is called <a href="https://github.com/lance-gg/spaaace/blob/master/main.js"><code>main.js</code></a>.</p>
 <p>The server engine schedules a <code>step</code> function to be called at a regular interval.  The
 flow is:</p>
 <ul>
@@ -123,15 +123,15 @@ flow is:</p>
 </li>
 </ul>
 <h2>Step 1: main.js and the ServerEngine</h2><h3>Build your own ServerEngine class:</h3><p>The first step is to build your own ServerEngine-derived class.  For this tutorial
-you can look at file <a href="https://github.com/OpherV/spaaace/blob/tutorial/src/server/SpaaaceServerEngine.js"><code>src/server/SpaaaceServerEngine.js</code></a></p>
+you can look at file <a href="https://github.com/lance-gg/spaaace/blob/master/src/server/SpaaaceServerEngine.js"><code>src/server/SpaaaceServerEngine.js</code></a></p>
 <p>This file does the following:</p>
 <ol>
-<li>handle player-connected logic by creating a ship for the new player</li>
-<li>handle player-disconnected logic by removing the ship of the disconnected player</li>
+<li>handle player-connected logic by creating a ship for the new player.  See method <code>onPlayerConnected</code>.</li>
+<li>handle player-disconnected logic by removing the ship of the disconnected player.  See method <code>onPlayerDisconnected</code>.</li>
 <li>note the <code>makeBot()</code> method, it creates AI-controlled spaceships, which are controlled on the server only.  The AI-control code is implemented in the GameEngine, but since it is only called by the ServerEngine class, it will only run on the server.  This is the preferred technique to implement game code which only executes on the server.</li>
 </ol>
 <h3>Build your the main entry point:</h3><p>The next step is to write the server entry code.  For this tutorial the corresponding
-file is <a href="https://github.com/OpherV/spaaace/blob/tutorial/main.js"><code>main.js</code></a></p>
+file is <a href="https://github.com/lance-gg/spaaace/blob/master/main.js"><code>main.js</code></a></p>
 <p>The file does the following:</p>
 <ol>
 <li>create an express server and configure the root route '/'</li>
@@ -161,7 +161,7 @@ const io = socketIO(requestHandler);
 // Game Server
 const SpaaaceServerEngine = require(path.join(__dirname, 'src/server/SpaaaceServerEngine.js'));
 const SpaaaceGameEngine = require(path.join(__dirname, 'src/common/SpaaaceGameEngine.js'));
-const SimplePhysicsEngine = require('incheon').physics.SimplePhysicsEngine;
+const SimplePhysicsEngine = require('lance-gg').physics.SimplePhysicsEngine;
 
 // Game Instances
 const physicsEngine = new SimplePhysicsEngine({ collisionOptions: { COLLISION_DISTANCE: 50 } } );
@@ -174,7 +174,7 @@ GameEngine class.  This is where your game mechanics (a.k.a. game rules,
 or business logic) are implemented.
 Remember that most of this code is meant to execute on the server
 as well as on each client.</p>
-<p>For this tutorial, take a look at <a href="https://github.com/OpherV/spaaace/blob/tutorial/src/common/SpaaaceGameEngine.js"><code>src/common/SpaaaceGameEngine.js</code></a>
+<p>For this tutorial, take a look at <a href="https://github.com/lance-gg/spaaace/blob/tutorial/src/common/SpaaaceGameEngine.js"><code>src/common/SpaaaceGameEngine.js</code></a>
 The game engine logic has three major tasks:</p>
 <ol>
 <li>to extend the <code>processInput()</code> method.  This is the logic which handles new user input such as movement, firing, activate ability, etc.  In the sample code the <code>processInput()</code> method handles the keyboard inputs &quot;up&quot;, &quot;right&quot;, &quot;left&quot;, &quot;space&quot;.  The inputs will cause the spaceship to accelerate, turn right or left, or to fire a missile.</li>
@@ -183,17 +183,17 @@ The game engine logic has three major tasks:</p>
 <li><code>destroyMissile()</code>.  Remove a missile.</li>
 </ol>
 <h2>Step 3: <code>clientEntryPoint.js</code>, <code>ClientEngine</code>, and <code>Renderer</code></h2><p>The client entry code is surprisingly similar to the server entry code.  It too creates a physics engine, and game engine, and has options.  The first difference is that the options configure the synchronization, and that instead of a server engine, we instantiate a client engine.</p>
-<p>The full sample code is in <a href="https://github.com/OpherV/spaaace/blob/tutorial/src/client/clientEntryPoint.js"><code>src/client/clientEntryPoint.js</code></a> and is roughly implemented as follows:</p>
+<p>The full sample code is in <a href="https://github.com/lance-gg/spaaace/blob/master/src/client/clientEntryPoint.js"><code>src/client/clientEntryPoint.js</code></a> and is roughly implemented as follows:</p>
 <pre class="prettyprint source lang-javascript"><code>// default options, overwritten by query-string options
 // are sent to both game engine and client engine
 const defaults = {
     traceLevel: 1000,
-    delayInputCount: 3,
+    delayInputCount: 8,
     clientIDSpace: 1000000,
     syncOptions: {
         sync: qsOptions.sync || 'extrapolate',
-        localObjBending: 0.6,
-        remoteObjBending: 0.6
+        localObjBending: 0.2,
+        remoteObjBending: 0.5
     }
 };
 let options = Object.assign(defaults, qsOptions);
@@ -202,25 +202,27 @@ let options = Object.assign(defaults, qsOptions);
 const physicsEngine = new SimplePhysicsEngine({ collisionOptions: { COLLISION_DISTANCE: 25 } } );
 const gameOptions = Object.assign({ physicsEngine }, options);
 const gameEngine = new SpaaaceGameEngine(gameOptions);
-const clientEngine = new SpaaaceClientEngine(gameEngine, options);</code></pre><h2>Step 4: DynamicObjects</h2><p>Your game objects, including monsters, spaceships, zombies, and bosses, all extend
+const clientEngine = new SpaaaceClientEngine(gameEngine, options);
+
+clientEngine.start();</code></pre><h2>Step 4: DynamicObjects</h2><p>Your game objects, including monsters, spaceships, zombies, and bosses, all extend
 the <code>DynamicObject</code> class.  More advanced games which require a true physics engine will prefer to extend the <code>PhysicsObject</code> class, but that is outside the scope of this tutorial.  The <code>DynamicObject</code> base class is a
 serializable class, meaning that the server can serialize any instance of the class
 (or sub-classes) into a binary object, and transmit it to the clients.  The dynamic
 object instances
 must be serializable so that the server can send updates to the clients.</p>
 <p>Most game objects will have additional attributes that describe the game object, and so each object must specify which attribute values need to be serialized and transmitted from the server to the clients on each update.  To describe the added attributes of an extended class, use the <code>netscheme</code> mechanism.</p>
-<p>Take a look at <a href="https://github.com/OpherV/spaaace/blob/tutorial/src/common/Ship.js"><code>src/common/Ship.js</code></a> and
-<a href="https://github.com/OpherV/spaaace/blob/tutorial/src/common/Missile.js"><code>src/common/Missile.js</code></a>.  In both files
+<p>Take a look at <a href="https://github.com/lance-gg/spaaace/blob/master/src/common/Ship.js"><code>src/common/Ship.js</code></a> and
+<a href="https://github.com/lance-gg/spaaace/blob/master/src/common/Missile.js"><code>src/common/Missile.js</code></a>.  In both files
 you will find that the base class provides most of the needed logic for movement,
 synchronization, and that the extended classes can be quite simple.</p>
-<h2>Step 5: Putting it all together</h2><p>For the full game, you will need to create a <a href="https://github.com/OpherV/spaaace/blob/tutorial/package.json"><code>package.json</code></a> file, and <a href="https://github.com/OpherV/spaaace/blob/tutorial/index.html"><code>index.html</code></a> file,
-examples of which are available in the <strong>tutorial</strong> branch of the <a href="https://github.com/OpherV/spaaace/tree/tutorial">spaaace</a> repository.</p>
+<h2>Step 5: Putting it all together</h2><p>For the full game, you will need to create a <a href="https://github.com/lance-gg/spaaace/blob/master/package.json"><code>package.json</code></a> file, and <a href="https://github.com/lance-gg/spaaace/blob/master/index.html"><code>index.html</code></a> file,
+examples of which are available in the <a href="https://github.com/OpherV/spaaace">spaaace</a> repository.</p>
 <p>To run the server run <code>yarn run build</code> followed by <code>yarn start</code>.<br>Note that the server has two roles: <strong>(1)</strong> it acts as an HTTP server, serving index.html to clients
 which connect to the game;
-and <strong>(2)</strong> it runs the ServerEngine entry point, accepting client connections and running the server-authoritative game engine.</p>
+and <strong>(2)</strong> it runs the ServerEngine socket.io entry point, accepting client connections, running the server-authoritative game engine, and broadcasting updates to the clients.</p>
 <h2>Game Events</h2><p>It is good programming practice to implement your code using event handlers,
 so that it is clear what each chunk of logic is handling.</p>
-<p>The full list of events is available in the <a href="http://docs.incheon.gg/develop/GameEngine.html">API GameEngine reference</a>, so we will only list the most
+<p>The full list of events is available in the <a href="http://docs.lance.gg/develop/GameEngine.html">API GameEngine reference</a>, so we will only list the most
 important events here.</p>
 <ul>
 <li><code>preStep</code> and <code>postStep</code> - emitted by game engine, just before and just after step execution.  The event handlers receive the step number and whether or not this step is a reenactment.</li>
