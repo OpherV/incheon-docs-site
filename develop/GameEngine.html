@@ -33,7 +33,7 @@
     <label for="nav-trigger" class="overlay"></label>
 
     <nav>
-        <h2 class="home"><a href="index.html">Lance</a></h2><h2>Concepts</h2><ul class="tutorials"><li><span class='category'>Introduction<ul><li><a href="tutorial-introduction.html">Introduction</a></li><li><a href="tutorial-introduction_prologue.html">Prologue</a></li><li><a href="tutorial-introduction_community.html">Community</a></li><li><a href="tutorial-introduction_roadmap.html">Development Roadmap</a></li><li><a href="tutorial-introduction_faq.html">Frequently Asked Questions</a></li></ul></li><li><span class='category'>Overview<ul><li><a href="tutorial-overview_architecture.html">Architecture of a Multiplayer Game</a></li><li><a href="tutorial-guide_gameengine.html">Game Engine</a></li><li><a href="tutorial-guide_serverengine.html">Server Engine</a></li><li><a href="tutorial-guide_clientengine.html">Client Engine</a></li><li><a href="tutorial-guide_renderer.html">Renderer</a></li><li><a href="tutorial-guide_gameworld.html">Game World and Game Objects</a></li><li><a href="tutorial-guide_serialization.html">Serialization and Communication</a></li></ul></li><li><span class='category'>Synchronization Methods<ul><li><a href="tutorial-guide_syncinterpolation.html">Interpolation</a></li><li><a href="tutorial-guide_syncextrapolation.html">Extrapolation</a></li></ul></li><li><span class='category'>Tutorials<ul><li><a href="tutorial-MyFirstGame.html">My First Game: Pong</a></li><li><a href="tutorial-spaceships.html">Spaaace</a></li></ul></li><li><span class='category'>Extras<ul><li><a href="tutorial-guide_tuningdebugging.html">Fine Tuning and Debugging</a></li><li><a href="tutorial-furtherreading.html">Further Reading</a></li></ul></li></ul><h2>API Reference</h2><h3 class="classes">Classes</h3><ul><li><a href="AFrameRenderer.html">AFrameRenderer</a><ul class='methods'><li data-type='method'><a href="AFrameRenderer.html#draw">draw</a></li><li data-type='method'><a href="AFrameRenderer.html#init">init</a></li></ul></li><li><a href="ClientEngine.html">ClientEngine</a><ul class='methods'><li data-type='method'><a href="ClientEngine.html#connect">connect</a></li><li data-type='method'><a href="ClientEngine.html#isOwnedByPlayer">isOwnedByPlayer</a></li><li data-type='method'><a href="ClientEngine.html#sendInput">sendInput</a></li><li data-type='method'><a href="ClientEngine.html#start">start</a></li></ul></li><li><a href="DynamicObject.html">DynamicObject</a><ul class='methods'><li data-type='method'><a href="DynamicObject.html#bendingToString">bendingToString</a></li><li data-type='method'><a href="DynamicObject.html#toString">toString</a></li></ul></li><li><a href="GameEngine.html">GameEngine</a><ul class='methods'><li data-type='method'><a href="GameEngine.html#addObjectToWorld">addObjectToWorld</a></li><li data-type='method'><a href="GameEngine.html#on">on</a></li><li data-type='method'><a href="GameEngine.html#once">once</a></li><li data-type='method'><a href="GameEngine.html#processInput">processInput</a></li><li data-type='method'><a href="GameEngine.html#registerClasses">registerClasses</a></li><li data-type='method'><a href="GameEngine.html#removeListener">removeListener</a></li><li data-type='method'><a href="GameEngine.html#removeObjectFromWorld">removeObjectFromWorld</a></li><li data-type='method'><a href="GameEngine.html#start">start</a></li></ul></li><li><a href="PhysicalObject.html">PhysicalObject</a></li><li><a href="Quaternion.html">Quaternion</a><ul class='methods'><li data-type='method'><a href="Quaternion.html#toString">toString</a></li></ul></li><li><a href="Renderer.html">Renderer</a><ul class='methods'><li data-type='method'><a href="Renderer.html#addObject">addObject</a></li><li data-type='method'><a href="Renderer.html#draw">draw</a></li><li data-type='method'><a href="Renderer.html#init">init</a></li><li data-type='method'><a href="Renderer.html#removeObject">removeObject</a></li></ul></li><li><a href="Serializer.html">Serializer</a><ul class='methods'><li data-type='method'><a href="Serializer.html#.typeCanAssign">typeCanAssign</a></li><li data-type='method'><a href="Serializer.html#addCustomType">addCustomType</a></li><li data-type='method'><a href="Serializer.html#registerClass">registerClass</a></li></ul></li><li><a href="ServerEngine.html">ServerEngine</a><ul class='methods'><li data-type='method'><a href="ServerEngine.html#gameStatus">gameStatus</a></li></ul></li><li><a href="ThreeVector.html">ThreeVector</a><ul class='methods'><li data-type='method'><a href="ThreeVector.html#toString">toString</a></li></ul></li><li><a href="TwoVector.html">TwoVector</a><ul class='methods'><li data-type='method'><a href="TwoVector.html#toString">toString</a></li></ul></li></ul><h3 class="events">Events</h3><ul><li><a href="GameEngine.html#event:client__postStep">client__postStep</a></li><li><a href="GameEngine.html#event:client__preStep">client__preStep</a></li><li><a href="GameEngine.html#event:client__processInput">client__processInput</a></li><li><a href="GameEngine.html#event:client__syncReceived">client__syncReceived</a></li><li><a href="GameEngine.html#event:objectAdded">objectAdded</a></li><li><a href="GameEngine.html#event:objectDestroyed">objectDestroyed</a></li><li><a href="GameEngine.html#event:playerDisconnected">playerDisconnected</a></li><li><a href="GameEngine.html#event:playerJoined">playerJoined</a></li><li><a href="GameEngine.html#event:postStep">postStep</a></li><li><a href="GameEngine.html#event:preStep">preStep</a></li><li><a href="GameEngine.html#event:processInput">processInput</a></li><li><a href="GameEngine.html#event:server__inputReceived">server__inputReceived</a></li><li><a href="GameEngine.html#event:server__playerDisconnected">server__playerDisconnected</a></li><li><a href="GameEngine.html#event:server__playerJoined">server__playerJoined</a></li><li><a href="GameEngine.html#event:server__postStep">server__postStep</a></li><li><a href="GameEngine.html#event:server__preStep">server__preStep</a></li><li><a href="GameEngine.html#event:server__processInput">server__processInput</a></li><li><a href="GameEngine.html#event:syncReceived">syncReceived</a></li></ul>
+        <h2 class="home"><a href="index.html">Lance</a></h2><h2>Concepts</h2><ul class="tutorials"><li><span class='category'>Introduction<ul><li><a href="tutorial-introduction.html">Introduction</a></li><li><a href="tutorial-introduction_prologue.html">Prologue</a></li><li><a href="tutorial-introduction_community.html">Community</a></li><li><a href="tutorial-introduction_roadmap.html">Development Roadmap</a></li><li><a href="tutorial-introduction_faq.html">Frequently Asked Questions</a></li></ul></li><li><span class='category'>Overview<ul><li><a href="tutorial-overview_architecture.html">Architecture of a Multiplayer Game</a></li><li><a href="tutorial-guide_gameengine.html">Game Engine</a></li><li><a href="tutorial-guide_serverengine.html">Server Engine</a></li><li><a href="tutorial-guide_clientengine.html">Client Engine</a></li><li><a href="tutorial-guide_renderer.html">Renderer</a></li><li><a href="tutorial-guide_gameworld.html">Game World and Game Objects</a></li><li><a href="tutorial-guide_serialization.html">Serialization and Communication</a></li></ul></li><li><span class='category'>Synchronization Methods<ul><li><a href="tutorial-guide_syncinterpolation.html">Interpolation</a></li><li><a href="tutorial-guide_syncextrapolation.html">Extrapolation</a></li></ul></li><li><span class='category'>Tutorials<ul><li><a href="tutorial-MyFirstGame.html">My First Game: Pong</a></li><li><a href="tutorial-spaceships.html">Spaaace</a></li></ul></li><li><span class='category'>Extras<ul><li><a href="tutorial-guide_tuningdebugging.html">Fine Tuning and Debugging</a></li><li><a href="tutorial-furtherreading.html">Further Reading</a></li></ul></li></ul><h2>API Reference</h2><h3 class="classes">Classes</h3><ul><li><a href="AFrameRenderer.html">AFrameRenderer</a><ul class='methods'><li data-type='method'><a href="AFrameRenderer.html#draw">draw</a></li><li data-type='method'><a href="AFrameRenderer.html#init">init</a></li></ul></li><li><a href="ClientEngine.html">ClientEngine</a><ul class='methods'><li data-type='method'><a href="ClientEngine.html#connect">connect</a></li><li data-type='method'><a href="ClientEngine.html#isOwnedByPlayer">isOwnedByPlayer</a></li><li data-type='method'><a href="ClientEngine.html#sendInput">sendInput</a></li><li data-type='method'><a href="ClientEngine.html#start">start</a></li></ul></li><li><a href="DynamicObject.html">DynamicObject</a><ul class='methods'><li data-type='method'><a href="DynamicObject.html#bendingToString">bendingToString</a></li><li data-type='method'><a href="DynamicObject.html#toString">toString</a></li></ul></li><li><a href="GameEngine.html">GameEngine</a><ul class='methods'><li data-type='method'><a href="GameEngine.html#addObjectToWorld">addObjectToWorld</a></li><li data-type='method'><a href="GameEngine.html#on">on</a></li><li data-type='method'><a href="GameEngine.html#once">once</a></li><li data-type='method'><a href="GameEngine.html#processInput">processInput</a></li><li data-type='method'><a href="GameEngine.html#registerClasses">registerClasses</a></li><li data-type='method'><a href="GameEngine.html#removeListener">removeListener</a></li><li data-type='method'><a href="GameEngine.html#removeObjectFromWorld">removeObjectFromWorld</a></li><li data-type='method'><a href="GameEngine.html#start">start</a></li></ul></li><li><a href="PhysicalObject.html">PhysicalObject</a></li><li><a href="Quaternion.html">Quaternion</a><ul class='methods'><li data-type='method'><a href="Quaternion.html#toString">toString</a></li></ul></li><li><a href="Renderer.html">Renderer</a><ul class='methods'><li data-type='method'><a href="Renderer.html#addObject">addObject</a></li><li data-type='method'><a href="Renderer.html#draw">draw</a></li><li data-type='method'><a href="Renderer.html#init">init</a></li><li data-type='method'><a href="Renderer.html#removeObject">removeObject</a></li></ul></li><li><a href="Serializer.html">Serializer</a><ul class='methods'><li data-type='method'><a href="Serializer.html#.typeCanAssign">typeCanAssign</a></li><li data-type='method'><a href="Serializer.html#addCustomType">addCustomType</a></li><li data-type='method'><a href="Serializer.html#registerClass">registerClass</a></li></ul></li><li><a href="ServerEngine.html">ServerEngine</a><ul class='methods'><li data-type='method'><a href="ServerEngine.html#gameStatus">gameStatus</a></li></ul></li><li><a href="ThreeVector.html">ThreeVector</a><ul class='methods'><li data-type='method'><a href="ThreeVector.html#toString">toString</a></li></ul></li><li><a href="TwoVector.html">TwoVector</a><ul class='methods'><li data-type='method'><a href="TwoVector.html#toString">toString</a></li></ul></li></ul><h3 class="events">Events</h3><ul><li><a href="GameEngine.html#event:client__postStep">client__postStep</a></li><li><a href="GameEngine.html#event:client__preStep">client__preStep</a></li><li><a href="GameEngine.html#event:client__processInput">client__processInput</a></li><li><a href="GameEngine.html#event:client__slowFrameRate">client__slowFrameRate</a></li><li><a href="GameEngine.html#event:client__syncReceived">client__syncReceived</a></li><li><a href="GameEngine.html#event:objectAdded">objectAdded</a></li><li><a href="GameEngine.html#event:objectDestroyed">objectDestroyed</a></li><li><a href="GameEngine.html#event:playerDisconnected">playerDisconnected</a></li><li><a href="GameEngine.html#event:playerJoined">playerJoined</a></li><li><a href="GameEngine.html#event:postStep">postStep</a></li><li><a href="GameEngine.html#event:preStep">preStep</a></li><li><a href="GameEngine.html#event:processInput">processInput</a></li><li><a href="GameEngine.html#event:server__inputReceived">server__inputReceived</a></li><li><a href="GameEngine.html#event:server__playerDisconnected">server__playerDisconnected</a></li><li><a href="GameEngine.html#event:server__playerJoined">server__playerJoined</a></li><li><a href="GameEngine.html#event:server__postStep">server__postStep</a></li><li><a href="GameEngine.html#event:server__preStep">server__preStep</a></li><li><a href="GameEngine.html#event:server__processInput">server__processInput</a></li><li><a href="GameEngine.html#event:syncReceived">syncReceived</a></li></ul>
     </nav>
 
     <div id="main">
@@ -343,7 +343,7 @@ can reference these values.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line267">line 267</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line275">line 275</a>
     </li></ul></dd>
     
 
@@ -473,7 +473,7 @@ is using delayed-input, and the RTT is very low.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line327">line 327</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line335">line 335</a>
     </li></ul></dd>
     
 
@@ -649,7 +649,7 @@ is using delayed-input, and the RTT is very low.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line207">line 207</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line215">line 215</a>
     </li></ul></dd>
     
 
@@ -803,7 +803,7 @@ is using delayed-input, and the RTT is very low.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line218">line 218</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line226">line 226</a>
     </li></ul></dd>
     
 
@@ -1062,7 +1062,7 @@ the ID of a player.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line376">line 376</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line384">line 384</a>
     </li></ul></dd>
     
 
@@ -1193,7 +1193,7 @@ the ID of a player.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line406">line 406</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line414">line 414</a>
     </li></ul></dd>
     
 
@@ -1355,7 +1355,7 @@ the ID of a player.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line229">line 229</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line237">line 237</a>
     </li></ul></dd>
     
 
@@ -1486,7 +1486,7 @@ the ID of a player.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line385">line 385</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line393">line 393</a>
     </li></ul></dd>
     
 
@@ -1571,7 +1571,7 @@ and registering methods on the event handler.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line283">line 283</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line291">line 291</a>
     </li></ul></dd>
     
 
@@ -1995,6 +1995,89 @@ general processInput event.</p>
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line137">line 137</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="event:client__slowFrameRate">client__slowFrameRate</h4>
+
+    
+
+
+
+<div class="description">
+    <p>Report slow frame rate on the browser.
+The browser did not achieve a reasonable frame rate</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line182">line 182</a>
     </li></ul></dd>
     
 
