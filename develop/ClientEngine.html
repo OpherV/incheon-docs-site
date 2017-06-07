@@ -241,7 +241,7 @@ the server.</p></div>
 
             
 
-            <td class="description last"><p>health check message interval (millisec).  Default is 1000.</p></td>
+            <td class="description last"><p>health check message interval (millisec). Default is 1000.</p></td>
         </tr>
 
     
@@ -264,7 +264,7 @@ the server.</p></div>
 
             
 
-            <td class="description last"><p>health check RTT calculation sample size.  Default is 10.</p></td>
+            <td class="description last"><p>health check RTT calculation sample size. Default is 10.</p></td>
         </tr>
 
     
@@ -287,33 +287,37 @@ the server.</p></div>
 
             
 
-            <td class="description last"><p>an object describing the synchronization method.  If not set, will be set to extrapolate, with local object bending set to 0.0 and remote object bending set to 0.6.  If the query-string parameter &quot;sync&quot; is defined, then that value is passed to this object's sync attribute.</p>
-                <h6>Properties</h6>
-                
+            <td class="description last"><p>an object describing the synchronization method. If not set, will be set to extrapolate, with local object bending set to 0.0 and remote object bending set to 0.6. If the query-string parameter &quot;sync&quot; is defined, then that value is passed to this object's sync attribute.</p></td>
+        </tr>
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>sync</code></td>
+                <td class="name"><code>scheduler</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>When set to &quot;render-schedule&quot; the game step scheduling is controlled by the renderer and step time is variable.  When set to &quot;fixed&quot; the game step is run independently with a fixed step time. Default is &quot;fixed&quot;.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>syncOptions.sync</code></td>
             
 
             <td class="type">
@@ -336,7 +340,7 @@ the server.</p></div>
 
         <tr>
             
-                <td class="name"><code>localObjBending</code></td>
+                <td class="name"><code>syncOptions.localObjBending</code></td>
             
 
             <td class="type">
@@ -359,7 +363,7 @@ the server.</p></div>
 
         <tr>
             
-                <td class="name"><code>remoteObjBending</code></td>
+                <td class="name"><code>syncOptions.remoteObjBending</code></td>
             
 
             <td class="type">
@@ -376,13 +380,6 @@ the server.</p></div>
             
 
             <td class="description last"><p>amount of bending towards original client position, after each sync, for remote objects</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
         </tr>
 
     
@@ -453,7 +450,7 @@ the server.</p></div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line26">line 26</a>
+        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line27">line 27</a>
     </li></ul></dd>
     
 
@@ -539,7 +536,7 @@ the server.</p></div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line62">line 62</a>
+        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line65">line 65</a>
     </li></ul></dd>
     
 
@@ -599,7 +596,7 @@ the server.</p></div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line77">line 77</a>
+        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line85">line 85</a>
     </li></ul></dd>
     
 
@@ -659,7 +656,7 @@ the server.</p></div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line56">line 56</a>
+        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line59">line 59</a>
     </li></ul></dd>
     
 
@@ -798,7 +795,7 @@ the server.</p></div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line117">line 117</a>
+        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line125">line 125</a>
     </li></ul></dd>
     
 
@@ -951,7 +948,7 @@ the server.</p></div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line95">line 95</a>
+        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line103">line 103</a>
     </li></ul></dd>
     
 
@@ -1132,7 +1129,7 @@ typically at the beginning of client-side step processing (see event client__pre
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line272">line 272</a>
+        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line286">line 286</a>
     </li></ul></dd>
     
 
@@ -1214,7 +1211,7 @@ typically at the beginning of client-side step processing (see event client__pre
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line156">line 156</a>
+        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line164">line 164</a>
     </li></ul></dd>
     
 
