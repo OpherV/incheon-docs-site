@@ -33,7 +33,7 @@
     <label for="nav-trigger" class="overlay"></label>
 
     <nav>
-        <h2 class="home"><a href="index.html">Lance</a></h2><h2>Concepts</h2><ul class="tutorials"><li><span class='category'>Introduction<ul><li><a href="tutorial-introduction.html">Introduction</a></li><li><a href="tutorial-introduction_prologue.html">Prologue</a></li><li><a href="tutorial-introduction_community.html">Community</a></li><li><a href="tutorial-introduction_roadmap.html">Development Roadmap</a></li><li><a href="tutorial-introduction_faq.html">Frequently Asked Questions</a></li></ul></li><li><span class='category'>Overview<ul><li><a href="tutorial-overview_architecture.html">Architecture of a Multiplayer Game</a></li><li><a href="tutorial-guide_gameengine.html">Game Engine</a></li><li><a href="tutorial-guide_serverengine.html">Server Engine</a></li><li><a href="tutorial-guide_clientengine.html">Client Engine</a></li><li><a href="tutorial-guide_renderer.html">Renderer</a></li><li><a href="tutorial-guide_gameworld.html">Game World and Game Objects</a></li><li><a href="tutorial-guide_serialization.html">Serialization and Communication</a></li></ul></li><li><span class='category'>Synchronization Methods<ul><li><a href="tutorial-guide_syncinterpolation.html">Interpolation</a></li><li><a href="tutorial-guide_syncextrapolation.html">Extrapolation</a></li></ul></li><li><span class='category'>Tutorials<ul><li><a href="tutorial-MyFirstGame.html">My First Game: Pong</a></li><li><a href="tutorial-spaceships.html">Spaaace</a></li></ul></li><li><span class='category'>Extras<ul><li><a href="tutorial-guide_tuningdebugging.html">Fine Tuning and Debugging</a></li><li><a href="tutorial-furtherreading.html">Further Reading</a></li></ul></li></ul><h2>API Reference</h2><h3 class="classes">Classes</h3><ul><li><a href="AFrameRenderer.html">AFrameRenderer</a><ul class='methods'><li data-type='method'><a href="AFrameRenderer.html#draw">draw</a></li><li data-type='method'><a href="AFrameRenderer.html#init">init</a></li></ul></li><li><a href="ClientEngine.html">ClientEngine</a><ul class='methods'><li data-type='method'><a href="ClientEngine.html#connect">connect</a></li><li data-type='method'><a href="ClientEngine.html#isOwnedByPlayer">isOwnedByPlayer</a></li><li data-type='method'><a href="ClientEngine.html#sendInput">sendInput</a></li><li data-type='method'><a href="ClientEngine.html#start">start</a></li></ul></li><li><a href="DynamicObject.html">DynamicObject</a><ul class='methods'><li data-type='method'><a href="DynamicObject.html#bendingToString">bendingToString</a></li><li data-type='method'><a href="DynamicObject.html#toString">toString</a></li></ul></li><li><a href="GameEngine.html">GameEngine</a><ul class='methods'><li data-type='method'><a href="GameEngine.html#addObjectToWorld">addObjectToWorld</a></li><li data-type='method'><a href="GameEngine.html#on">on</a></li><li data-type='method'><a href="GameEngine.html#once">once</a></li><li data-type='method'><a href="GameEngine.html#processInput">processInput</a></li><li data-type='method'><a href="GameEngine.html#registerClasses">registerClasses</a></li><li data-type='method'><a href="GameEngine.html#removeListener">removeListener</a></li><li data-type='method'><a href="GameEngine.html#removeObjectFromWorld">removeObjectFromWorld</a></li><li data-type='method'><a href="GameEngine.html#start">start</a></li><li data-type='method'><a href="GameEngine.html#step">step</a></li></ul></li><li><a href="PhysicalObject.html">PhysicalObject</a></li><li><a href="Quaternion.html">Quaternion</a><ul class='methods'><li data-type='method'><a href="Quaternion.html#toString">toString</a></li></ul></li><li><a href="Renderer.html">Renderer</a><ul class='methods'><li data-type='method'><a href="Renderer.html#addObject">addObject</a></li><li data-type='method'><a href="Renderer.html#draw">draw</a></li><li data-type='method'><a href="Renderer.html#init">init</a></li><li data-type='method'><a href="Renderer.html#removeObject">removeObject</a></li><li data-type='method'><a href="Renderer.html#runClientStep">runClientStep</a></li></ul></li><li><a href="Serializer.html">Serializer</a><ul class='methods'><li data-type='method'><a href="Serializer.html#.typeCanAssign">typeCanAssign</a></li><li data-type='method'><a href="Serializer.html#addCustomType">addCustomType</a></li><li data-type='method'><a href="Serializer.html#registerClass">registerClass</a></li></ul></li><li><a href="ServerEngine.html">ServerEngine</a><ul class='methods'><li data-type='method'><a href="ServerEngine.html#gameStatus">gameStatus</a></li></ul></li><li><a href="ThreeVector.html">ThreeVector</a><ul class='methods'><li data-type='method'><a href="ThreeVector.html#toString">toString</a></li></ul></li><li><a href="TwoVector.html">TwoVector</a><ul class='methods'><li data-type='method'><a href="TwoVector.html#toString">toString</a></li></ul></li></ul><h3 class="events">Events</h3><ul><li><a href="GameEngine.html#event:client__postStep">client__postStep</a></li><li><a href="GameEngine.html#event:client__preStep">client__preStep</a></li><li><a href="GameEngine.html#event:client__processInput">client__processInput</a></li><li><a href="GameEngine.html#event:client__slowFrameRate">client__slowFrameRate</a></li><li><a href="GameEngine.html#event:client__stepReset">client__stepReset</a></li><li><a href="GameEngine.html#event:client__syncReceived">client__syncReceived</a></li><li><a href="GameEngine.html#event:objectAdded">objectAdded</a></li><li><a href="GameEngine.html#event:objectDestroyed">objectDestroyed</a></li><li><a href="GameEngine.html#event:playerDisconnected">playerDisconnected</a></li><li><a href="GameEngine.html#event:playerJoined">playerJoined</a></li><li><a href="GameEngine.html#event:postStep">postStep</a></li><li><a href="GameEngine.html#event:preStep">preStep</a></li><li><a href="GameEngine.html#event:processInput">processInput</a></li><li><a href="GameEngine.html#event:server__inputReceived">server__inputReceived</a></li><li><a href="GameEngine.html#event:server__playerDisconnected">server__playerDisconnected</a></li><li><a href="GameEngine.html#event:server__playerJoined">server__playerJoined</a></li><li><a href="GameEngine.html#event:server__postStep">server__postStep</a></li><li><a href="GameEngine.html#event:server__preStep">server__preStep</a></li><li><a href="GameEngine.html#event:server__processInput">server__processInput</a></li><li><a href="GameEngine.html#event:server__start">server__start</a></li><li><a href="GameEngine.html#event:syncReceived">syncReceived</a></li></ul>
+        <h2 class="home"><a href="index.html">Lance</a></h2><h2>Concepts</h2><ul class="tutorials"><li><span class='category'>Introduction<ul><li><a href="tutorial-introduction.html">Introduction</a></li><li><a href="tutorial-introduction_prologue.html">Prologue</a></li><li><a href="tutorial-introduction_community.html">Community</a></li><li><a href="tutorial-introduction_roadmap.html">Development Roadmap</a></li><li><a href="tutorial-introduction_faq.html">Frequently Asked Questions</a></li></ul></li><li><span class='category'>Overview<ul><li><a href="tutorial-overview_architecture.html">Architecture of a Multiplayer Game</a></li><li><a href="tutorial-guide_gameengine.html">Game Engine</a></li><li><a href="tutorial-guide_serverengine.html">Server Engine</a></li><li><a href="tutorial-guide_clientengine.html">Client Engine</a></li><li><a href="tutorial-guide_renderer.html">Renderer</a></li><li><a href="tutorial-guide_gameworld.html">Game World and Game Objects</a></li><li><a href="tutorial-guide_serialization.html">Serialization and Communication</a></li></ul></li><li><span class='category'>Synchronization Methods<ul><li><a href="tutorial-guide_syncinterpolation.html">Interpolation</a></li><li><a href="tutorial-guide_syncextrapolation.html">Extrapolation</a></li></ul></li><li><span class='category'>Tutorials<ul><li><a href="tutorial-MyFirstGame.html">My First Game: Pong</a></li><li><a href="tutorial-spaceships.html">Spaaace</a></li></ul></li><li><span class='category'>Extras<ul><li><a href="tutorial-guide_tuningdebugging.html">Fine Tuning and Debugging</a></li><li><a href="tutorial-furtherreading.html">Further Reading</a></li></ul></li></ul><h2>API Reference</h2><h3 class="classes">Classes</h3><ul><li><a href="AFrameRenderer.html">AFrameRenderer</a><ul class='methods'><li data-type='method'><a href="AFrameRenderer.html#draw">draw</a></li><li data-type='method'><a href="AFrameRenderer.html#init">init</a></li></ul></li><li><a href="ClientEngine.html">ClientEngine</a><ul class='methods'><li data-type='method'><a href="ClientEngine.html#connect">connect</a></li><li data-type='method'><a href="ClientEngine.html#isOwnedByPlayer">isOwnedByPlayer</a></li><li data-type='method'><a href="ClientEngine.html#sendInput">sendInput</a></li><li data-type='method'><a href="ClientEngine.html#start">start</a></li></ul></li><li><a href="DynamicObject.html">DynamicObject</a><ul class='methods'><li data-type='method'><a href="DynamicObject.html#bendingToString">bendingToString</a></li><li data-type='method'><a href="DynamicObject.html#toString">toString</a></li></ul></li><li><a href="GameEngine.html">GameEngine</a><ul class='methods'><li data-type='method'><a href="GameEngine.html#addObjectToWorld">addObjectToWorld</a></li><li data-type='method'><a href="GameEngine.html#on">on</a></li><li data-type='method'><a href="GameEngine.html#once">once</a></li><li data-type='method'><a href="GameEngine.html#processInput">processInput</a></li><li data-type='method'><a href="GameEngine.html#registerClasses">registerClasses</a></li><li data-type='method'><a href="GameEngine.html#removeListener">removeListener</a></li><li data-type='method'><a href="GameEngine.html#removeObjectFromWorld">removeObjectFromWorld</a></li><li data-type='method'><a href="GameEngine.html#start">start</a></li><li data-type='method'><a href="GameEngine.html#step">step</a></li></ul></li><li><a href="PhysicalObject.html">PhysicalObject</a><ul class='methods'><li data-type='method'><a href="PhysicalObject.html#toString">toString</a></li></ul></li><li><a href="Quaternion.html">Quaternion</a><ul class='methods'><li data-type='method'><a href="Quaternion.html#conjugate">conjugate</a></li><li data-type='method'><a href="Quaternion.html#copy">copy</a></li><li data-type='method'><a href="Quaternion.html#multiply">multiply</a></li><li data-type='method'><a href="Quaternion.html#set">set</a></li><li data-type='method'><a href="Quaternion.html#setFromAxisAngle">setFromAxisAngle</a></li><li data-type='method'><a href="Quaternion.html#slerp">slerp</a></li><li data-type='method'><a href="Quaternion.html#toAxisAngle">toAxisAngle</a></li><li data-type='method'><a href="Quaternion.html#toString">toString</a></li></ul></li><li><a href="Renderer.html">Renderer</a><ul class='methods'><li data-type='method'><a href="Renderer.html#addObject">addObject</a></li><li data-type='method'><a href="Renderer.html#draw">draw</a></li><li data-type='method'><a href="Renderer.html#init">init</a></li><li data-type='method'><a href="Renderer.html#removeObject">removeObject</a></li><li data-type='method'><a href="Renderer.html#runClientStep">runClientStep</a></li></ul></li><li><a href="Serializer.html">Serializer</a><ul class='methods'><li data-type='method'><a href="Serializer.html#.typeCanAssign">typeCanAssign</a></li><li data-type='method'><a href="Serializer.html#addCustomType">addCustomType</a></li><li data-type='method'><a href="Serializer.html#registerClass">registerClass</a></li></ul></li><li><a href="ServerEngine.html">ServerEngine</a><ul class='methods'><li data-type='method'><a href="ServerEngine.html#gameStatus">gameStatus</a></li></ul></li><li><a href="ThreeVector.html">ThreeVector</a><ul class='methods'><li data-type='method'><a href="ThreeVector.html#add">add</a></li><li data-type='method'><a href="ThreeVector.html#copy">copy</a></li><li data-type='method'><a href="ThreeVector.html#length">length</a></li><li data-type='method'><a href="ThreeVector.html#lerp">lerp</a></li><li data-type='method'><a href="ThreeVector.html#multiplyScalar">multiplyScalar</a></li><li data-type='method'><a href="ThreeVector.html#normalize">normalize</a></li><li data-type='method'><a href="ThreeVector.html#set">set</a></li><li data-type='method'><a href="ThreeVector.html#subtract">subtract</a></li><li data-type='method'><a href="ThreeVector.html#toString">toString</a></li></ul></li><li><a href="TwoVector.html">TwoVector</a><ul class='methods'><li data-type='method'><a href="TwoVector.html#toString">toString</a></li></ul></li></ul><h3 class="events">Events</h3><ul><li><a href="GameEngine.html#event:client__postStep">client__postStep</a></li><li><a href="GameEngine.html#event:client__preStep">client__preStep</a></li><li><a href="GameEngine.html#event:client__processInput">client__processInput</a></li><li><a href="GameEngine.html#event:client__slowFrameRate">client__slowFrameRate</a></li><li><a href="GameEngine.html#event:client__stepReset">client__stepReset</a></li><li><a href="GameEngine.html#event:client__syncReceived">client__syncReceived</a></li><li><a href="GameEngine.html#event:objectAdded">objectAdded</a></li><li><a href="GameEngine.html#event:objectDestroyed">objectDestroyed</a></li><li><a href="GameEngine.html#event:playerDisconnected">playerDisconnected</a></li><li><a href="GameEngine.html#event:playerJoined">playerJoined</a></li><li><a href="GameEngine.html#event:postStep">postStep</a></li><li><a href="GameEngine.html#event:preStep">preStep</a></li><li><a href="GameEngine.html#event:processInput">processInput</a></li><li><a href="GameEngine.html#event:server__inputReceived">server__inputReceived</a></li><li><a href="GameEngine.html#event:server__playerDisconnected">server__playerDisconnected</a></li><li><a href="GameEngine.html#event:server__playerJoined">server__playerJoined</a></li><li><a href="GameEngine.html#event:server__postStep">server__postStep</a></li><li><a href="GameEngine.html#event:server__preStep">server__preStep</a></li><li><a href="GameEngine.html#event:server__processInput">server__processInput</a></li><li><a href="GameEngine.html#event:server__start">server__start</a></li><li><a href="GameEngine.html#event:syncReceived">syncReceived</a></li></ul>
     </nav>
 
     <div id="main">
@@ -96,18 +96,40 @@ class Quaternion extends Serializable {
         return `quaternion(${round3(this.w)}, ${round3(this.x)}, ${round3(this.y)}, ${round3(this.z)})`;
     }
 
+    /**
+     * copy values from another quaternion into this quaternion
+     *
+     * @param {Quaternion} sourceObj the quaternion to copy from
+     * @return {Quaternion} returns self
+     */
     copy(sourceObj) {
         this.set(sourceObj.w, sourceObj.x, sourceObj.y, sourceObj.z);
         return this;
     }
 
+    /**
+     * set quaternion values
+     *
+     * @param {Number} w w-value
+     * @param {Number} x x-value
+     * @param {Number} y y-value
+     * @param {Number} z z-value
+     * @return {Quaternion} returns self
+     */
     set(w, x, y, z) {
         this.w = w;
         this.x = x;
         this.y = y;
         this.z = z;
+
+        return this;
     }
 
+    /**
+     * return an axis-angle representation of this quaternion
+     *
+     * @return {Object} contains two attributes: axis (ThreeVector) and angle.
+     */
     toAxisAngle() {
 
         // assuming quaternion normalised then w is less than 1, so term always positive.
@@ -123,6 +145,13 @@ class Quaternion extends Serializable {
         return { axis, angle };
     }
 
+    /**
+     * set the values of this quaternion from an axis/angle representation
+     *
+     * @param {ThreeVector} axis The axis
+     * @param {Number} angle angle in radians
+     * @return {Quaternion} returns self
+     */
     setFromAxisAngle(axis, angle) {
 
         let halfAngle = angle * 0.5;
@@ -135,6 +164,11 @@ class Quaternion extends Serializable {
         return this;
     }
 
+    /**
+     * conjugate the quaternion, in-place
+     *
+     * @return {Quaternion} returns self
+     */
     conjugate() {
         this.x *= -1;
         this.y *= -1;
@@ -143,6 +177,12 @@ class Quaternion extends Serializable {
     }
 
     /* eslint-disable */
+    /**
+     * multiply this quaternion by another, in-place
+     *
+     * @param {Quaternion} other The other quaternion
+     * @return {Quaternion} returns self
+     */
     multiply(other) {
         let aw = this.w, ax = this.x, ay = this.y, az = this.z;
         let bw = other.w, bx = other.x, by = other.y, bz = other.z;
@@ -157,6 +197,14 @@ class Quaternion extends Serializable {
     /* eslint-enable */
 
     /* eslint-disable */
+    /**
+     * Apply in-place slerp (spherical linear interpolation) to this quaternion,
+     * towards another quaternion.
+     *
+     * @param {Quaternion} target The target quaternion
+     * @param {Number} bending The percentage to interpolate
+     * @return {Quaternion} returns self
+     */
     slerp(target, bending) {
         let aw = this.w, ax = this.x, ay = this.y, az = this.z;
         let bw = target.w, bx = target.x, by = target.y, bz = target.z;
