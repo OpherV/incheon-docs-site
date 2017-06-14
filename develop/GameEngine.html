@@ -82,7 +82,7 @@ with client-side predictions.</p></div>
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="GameEngine"><span class="type-signature"></span>new GameEngine<span class="signature">(options)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="GameEngine"><span class="type-signature"></span>new GameEngine<span class="signature">(PhysicsEngine, options)</span><span class="type-signature"></span></h4>
 
     
 
@@ -122,6 +122,29 @@ once on the server, and once on each client.</p>
     </thead>
 
     <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>PhysicsEngine</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>a physics engine class, such as SimplePhysicsEngine or CannonPhysicsEngine.</p></td>
+        </tr>
+
     
 
         <tr>
@@ -208,6 +231,29 @@ once on the server, and once on each client.</p>
             
 
             <td class="description last"><p>client side only.  Introduce an artificial delay on the client to better match the time it will occur on the server.  This value sets the number of steps the client will wait before applying the input locally</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>physics</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>options object which will be passed to the physics engine constructor</p></td>
         </tr>
 
     
@@ -343,7 +389,7 @@ can reference these values.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line110">line 110</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line118">line 118</a>
     </li></ul></dd>
     
 
@@ -473,7 +519,7 @@ is using delayed-input, and the RTT is very low.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line191">line 191</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line199">line 199</a>
     </li></ul></dd>
     
 
@@ -649,7 +695,7 @@ is using delayed-input, and the RTT is very low.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line50">line 50</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line58">line 58</a>
     </li></ul></dd>
     
 
@@ -803,7 +849,7 @@ is using delayed-input, and the RTT is very low.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line61">line 61</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line69">line 69</a>
     </li></ul></dd>
     
 
@@ -1062,7 +1108,7 @@ the ID of a player.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line240">line 240</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line248">line 248</a>
     </li></ul></dd>
     
 
@@ -1193,7 +1239,7 @@ the ID of a player.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line270">line 270</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line278">line 278</a>
     </li></ul></dd>
     
 
@@ -1355,7 +1401,7 @@ the ID of a player.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line72">line 72</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line80">line 80</a>
     </li></ul></dd>
     
 
@@ -1486,7 +1532,7 @@ the ID of a player.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line249">line 249</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line257">line 257</a>
     </li></ul></dd>
     
 
@@ -1571,7 +1617,7 @@ and registering methods on the event handler.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line126">line 126</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line134">line 134</a>
     </li></ul></dd>
     
 
@@ -1771,7 +1817,7 @@ and registering methods on the event handler.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line140">line 140</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line148">line 148</a>
     </li></ul></dd>
     
 
@@ -1861,7 +1907,7 @@ and registering methods on the event handler.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line360">line 360</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line368">line 368</a>
     </li></ul></dd>
     
 
@@ -1943,7 +1989,7 @@ and registering methods on the event handler.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line354">line 354</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line362">line 362</a>
     </li></ul></dd>
     
 
@@ -2217,7 +2263,7 @@ general processInput event.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line393">line 393</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line401">line 401</a>
     </li></ul></dd>
     
 
@@ -2300,7 +2346,7 @@ The browser did not achieve a reasonable frame rate</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line448">line 448</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line456">line 456</a>
     </li></ul></dd>
     
 
@@ -2477,7 +2523,7 @@ The browser did not achieve a reasonable frame rate</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line416">line 416</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line424">line 424</a>
     </li></ul></dd>
     
 
@@ -2654,7 +2700,7 @@ The browser did not achieve a reasonable frame rate</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line407">line 407</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line415">line 415</a>
     </li></ul></dd>
     
 
@@ -2785,7 +2831,7 @@ The browser did not achieve a reasonable frame rate</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line295">line 295</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line303">line 303</a>
     </li></ul></dd>
     
 
@@ -2916,7 +2962,7 @@ The browser did not achieve a reasonable frame rate</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line302">line 302</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line310">line 310</a>
     </li></ul></dd>
     
 
@@ -3142,7 +3188,7 @@ The browser did not achieve a reasonable frame rate</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line318">line 318</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line326">line 326</a>
     </li></ul></dd>
     
 
@@ -3345,7 +3391,7 @@ The browser did not achieve a reasonable frame rate</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line309">line 309</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line317">line 317</a>
     </li></ul></dd>
     
 
@@ -3499,7 +3545,7 @@ The browser did not achieve a reasonable frame rate</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line287">line 287</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line295">line 295</a>
     </li></ul></dd>
     
 
@@ -3653,7 +3699,7 @@ The browser did not achieve a reasonable frame rate</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line279">line 279</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line287">line 287</a>
     </li></ul></dd>
     
 
@@ -3926,7 +3972,7 @@ method processInput is invoked.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line366">line 366</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line374">line 374</a>
     </li></ul></dd>
     
 
@@ -4129,7 +4175,7 @@ method processInput is invoked.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line439">line 439</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line447">line 447</a>
     </li></ul></dd>
     
 
@@ -4355,7 +4401,7 @@ method processInput is invoked.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line337">line 337</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line345">line 345</a>
     </li></ul></dd>
     
 
@@ -4558,7 +4604,7 @@ method processInput is invoked.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line328">line 328</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line336">line 336</a>
     </li></ul></dd>
     
 
@@ -4689,7 +4735,7 @@ method processInput is invoked.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line432">line 432</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line440">line 440</a>
     </li></ul></dd>
     
 
@@ -4820,7 +4866,7 @@ method processInput is invoked.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line425">line 425</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line433">line 433</a>
     </li></ul></dd>
     
 
@@ -5094,7 +5140,7 @@ general processInput event.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line379">line 379</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line387">line 387</a>
     </li></ul></dd>
     
 
@@ -5225,7 +5271,7 @@ general processInput event.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line455">line 455</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line463">line 463</a>
     </li></ul></dd>
     
 
@@ -5356,7 +5402,7 @@ general processInput event.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line347">line 347</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line355">line 355</a>
     </li></ul></dd>
     
 
