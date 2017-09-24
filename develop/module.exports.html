@@ -844,7 +844,7 @@ render loop.</p></div>
 
 
 <div class="description">
-    <p>client's player ID, as a string.</p>
+    <p>client's player ID, as a string. If running on the client, this is set at runtime by the clientEngine</p>
 </div>
 
 
@@ -880,7 +880,7 @@ render loop.</p></div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line85">line 85</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line51">line 51</a>
     </li></ul></dd>
     
 
@@ -1162,8 +1162,21 @@ render loop.</p></div>
         exports
         </h2>
         
-            <div class="class-description"><p>A Quaternion is a geometric object which can be used to
-represent a three-dimensional rotation.</p></div>
+            <div class="class-description"><p>The GameEngine contains the game logic.  Extend this class
+to implement game mechanics.  The GameEngine derived
+instance runs once on the server, where the final decisions
+are always taken, and one instance will run on each client as well,
+where the client emulates what it expects to be happening
+on the server.</p>
+<p>The game engine's logic must listen to user inputs and
+act on these inputs to change the game state.  For example,
+the game engine listens to controller/keyboard inputs to infer
+movement for the player/ship/first-person.  The game engine listens
+to clicks, button-presses to infer firing, etc..</p>
+<p>Note that the game engine runs on both the server and on the
+clients - but the server decisions always have the final say,
+and therefore clients must resolve server updates which conflict
+with client-side predictions.</p></div>
         
     
 </header>
@@ -1177,14 +1190,15 @@ represent a three-dimensional rotation.</p></div>
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="exports"><span class="type-signature"></span>new exports<span class="signature">(w, x, y, z)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="exports"><span class="type-signature"></span>new exports<span class="signature">(options)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    <p>Creates an instance of a Quaternion.</p>
+    <p>Create a game engine instance.  This needs to happen
+once on the server, and once on each client.</p>
 </div>
 
 
@@ -1220,7 +1234,49 @@ represent a three-dimensional rotation.</p></div>
 
         <tr>
             
-                <td class="name"><code>w</code></td>
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>options object</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>traceLevel</code></td>
             
 
             <td class="type">
@@ -1236,14 +1292,14 @@ represent a three-dimensional rotation.</p></div>
 
             
 
-            <td class="description last"><p>first value</p></td>
+            <td class="description last"><p>the trace level from 0 to 5.  Lower value traces more.</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>x</code></td>
+                <td class="name"><code>delayInputCount</code></td>
             
 
             <td class="type">
@@ -1259,53 +1315,14 @@ represent a three-dimensional rotation.</p></div>
 
             
 
-            <td class="description last"><p>second value</p></td>
+            <td class="description last"><p>client side only.  Introduce an artificial delay on the client to better match the time it will occur on the server.  This value sets the number of steps the client will wait before applying the input locally</p></td>
         </tr>
 
     
+    </tbody>
+</table>
 
-        <tr>
-            
-                <td class="name"><code>y</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
             </td>
-
-            
-
-            
-
-            <td class="description last"><p>third value</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>z</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>fourth value</p></td>
         </tr>
 
     
@@ -1346,7 +1363,7 @@ represent a three-dimensional rotation.</p></div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="serialize_Quaternion.js.html">serialize/Quaternion.js</a>, <a href="serialize_Quaternion.js.html#line9">line 9</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line25">line 25</a>
     </li></ul></dd>
     
 
@@ -1996,7 +2013,7 @@ represent a three-dimensional rotation.</p></div>
 
 
 <div class="description">
-    <p>client's player ID, as a string.</p>
+    <p>client's player ID, as a string. If running on the client, this is set at runtime by the clientEngine</p>
 </div>
 
 
@@ -2032,7 +2049,7 @@ represent a three-dimensional rotation.</p></div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line85">line 85</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line51">line 51</a>
     </li></ul></dd>
     
 
@@ -3101,7 +3118,7 @@ represent a three-dimensional rotation.</p></div>
 
 
 <div class="description">
-    <p>client's player ID, as a string.</p>
+    <p>client's player ID, as a string. If running on the client, this is set at runtime by the clientEngine</p>
 </div>
 
 
@@ -3137,7 +3154,7 @@ represent a three-dimensional rotation.</p></div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line85">line 85</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line51">line 51</a>
     </li></ul></dd>
     
 
@@ -4406,7 +4423,7 @@ updates, and capturing remote user inputs.</p></div>
 
 
 <div class="description">
-    <p>client's player ID, as a string.</p>
+    <p>client's player ID, as a string. If running on the client, this is set at runtime by the clientEngine</p>
 </div>
 
 
@@ -4442,7 +4459,7 @@ updates, and capturing remote user inputs.</p></div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line85">line 85</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line51">line 51</a>
     </li></ul></dd>
     
 
@@ -5535,7 +5552,7 @@ by three values.</p></div>
 
 
 <div class="description">
-    <p>client's player ID, as a string.</p>
+    <p>client's player ID, as a string. If running on the client, this is set at runtime by the clientEngine</p>
 </div>
 
 
@@ -5571,7 +5588,7 @@ by three values.</p></div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line85">line 85</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line51">line 51</a>
     </li></ul></dd>
     
 
@@ -6641,7 +6658,7 @@ by two values.</p></div>
 
 
 <div class="description">
-    <p>client's player ID, as a string.</p>
+    <p>client's player ID, as a string. If running on the client, this is set at runtime by the clientEngine</p>
 </div>
 
 
@@ -6677,7 +6694,7 @@ by two values.</p></div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line85">line 85</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line51">line 51</a>
     </li></ul></dd>
     
 
@@ -7817,7 +7834,7 @@ The object ID should be the next value provided by <code>world.idCount</code></p
 
 
 <div class="description">
-    <p>client's player ID, as a string.</p>
+    <p>client's player ID, as a string. If running on the client, this is set at runtime by the clientEngine</p>
 </div>
 
 
@@ -7853,7 +7870,7 @@ The object ID should be the next value provided by <code>world.idCount</code></p
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line85">line 85</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line51">line 51</a>
     </li></ul></dd>
     
 
@@ -8135,21 +8152,8 @@ The object ID should be the next value provided by <code>world.idCount</code></p
         exports
         </h2>
         
-            <div class="class-description"><p>The GameEngine contains the game logic.  Extend this class
-to implement game mechanics.  The GameEngine derived
-instance runs once on the server, where the final decisions
-are always taken, and one instance will run on each client as well,
-where the client emulates what it expects to be happening
-on the server.</p>
-<p>The game engine's logic must listen to user inputs and
-act on these inputs to change the game state.  For example,
-the game engine listens to controller/keyboard inputs to infer
-movement for the player/ship/first-person.  The game engine listens
-to clicks, button-presses to infer firing, etc..</p>
-<p>Note that the game engine runs on both the server and on the
-clients - but the server decisions always have the final say,
-and therefore clients must resolve server updates which conflict
-with client-side predictions.</p></div>
+            <div class="class-description"><p>A Quaternion is a geometric object which can be used to
+represent a three-dimensional rotation.</p></div>
         
     
 </header>
@@ -8163,15 +8167,14 @@ with client-side predictions.</p></div>
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="exports"><span class="type-signature"></span>new exports<span class="signature">(options)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="exports"><span class="type-signature"></span>new exports<span class="signature">(w, x, y, z)</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    <p>Create a game engine instance.  This needs to happen
-once on the server, and once on each client.</p>
+    <p>Creates an instance of a Quaternion.</p>
 </div>
 
 
@@ -8207,49 +8210,7 @@ once on the server, and once on each client.</p>
 
         <tr>
             
-                <td class="name"><code>options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>options object</p>
-                <h6>Properties</h6>
-                
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>traceLevel</code></td>
+                <td class="name"><code>w</code></td>
             
 
             <td class="type">
@@ -8265,14 +8226,14 @@ once on the server, and once on each client.</p>
 
             
 
-            <td class="description last"><p>the trace level from 0 to 5.  Lower value traces more.</p></td>
+            <td class="description last"><p>first value</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>delayInputCount</code></td>
+                <td class="name"><code>x</code></td>
             
 
             <td class="type">
@@ -8288,14 +8249,53 @@ once on the server, and once on each client.</p>
 
             
 
-            <td class="description last"><p>client side only.  Introduce an artificial delay on the client to better match the time it will occur on the server.  This value sets the number of steps the client will wait before applying the input locally</p></td>
+            <td class="description last"><p>second value</p></td>
         </tr>
 
     
-    </tbody>
-</table>
 
+        <tr>
+            
+                <td class="name"><code>y</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
             </td>
+
+            
+
+            
+
+            <td class="description last"><p>third value</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>z</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>fourth value</p></td>
         </tr>
 
     
@@ -8336,7 +8336,7 @@ once on the server, and once on each client.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line25">line 25</a>
+        <a href="serialize_Quaternion.js.html">serialize/Quaternion.js</a>, <a href="serialize_Quaternion.js.html#line9">line 9</a>
     </li></ul></dd>
     
 
@@ -8986,7 +8986,7 @@ once on the server, and once on each client.</p>
 
 
 <div class="description">
-    <p>client's player ID, as a string.</p>
+    <p>client's player ID, as a string. If running on the client, this is set at runtime by the clientEngine</p>
 </div>
 
 
@@ -9022,7 +9022,7 @@ once on the server, and once on each client.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line85">line 85</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line51">line 51</a>
     </li></ul></dd>
     
 
@@ -10018,7 +10018,7 @@ Serializer deserializes these objects.</p>
 
 
 <div class="description">
-    <p>client's player ID, as a string.</p>
+    <p>client's player ID, as a string. If running on the client, this is set at runtime by the clientEngine</p>
 </div>
 
 
@@ -10054,7 +10054,7 @@ Serializer deserializes these objects.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line85">line 85</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line51">line 51</a>
     </li></ul></dd>
     
 
@@ -11405,7 +11405,7 @@ the server.</p></div>
 
 
 <div class="description">
-    <p>client's player ID, as a string.</p>
+    <p>client's player ID, as a string. If running on the client, this is set at runtime by the clientEngine</p>
 </div>
 
 
@@ -11441,7 +11441,7 @@ the server.</p></div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line85">line 85</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line51">line 51</a>
     </li></ul></dd>
     
 
@@ -12614,7 +12614,7 @@ The object ID should be the next value provided by <code>world.idCount</code></p
 
 
 <div class="description">
-    <p>client's player ID, as a string.</p>
+    <p>client's player ID, as a string. If running on the client, this is set at runtime by the clientEngine</p>
 </div>
 
 
@@ -12650,7 +12650,7 @@ The object ID should be the next value provided by <code>world.idCount</code></p
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line85">line 85</a>
+        <a href="GameEngine.js.html">GameEngine.js</a>, <a href="GameEngine.js.html#line51">line 51</a>
     </li></ul></dd>
     
 
