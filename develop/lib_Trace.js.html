@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Interpolation - Documentation</title>
+    <title>lib/Trace.js - Documentation</title>
 
 
     <link rel="shortcut icon" href="http://lance.gg/favicon.ico">
@@ -38,36 +38,105 @@
 
     <div id="main">
         
-        <h1 class="page-title">Interpolation</h1>
+        <h1 class="page-title">lib/Trace.js</h1>
         
 
-        <section>
+        
 
-<header>
+
+
     
-</header>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Tracing Services.
+ * Use the trace functions to trace game state.  Turn on tracing by
+ * specifying the minimum trace level which should be recorded.  For
+ * example, setting traceLevel to Trace.TRACE_INFO will cause info,
+ * warn, and error traces to be recorded.
+ */
+ export default class Trace {
 
-<article>
-    <p>One way to synchronize the server and the clients is known as Interpolation.  In this method, the clients render steps which previously played out on the server.  The diagram below shows a typical sequence in an interpolated game.  Time is advancing downwards.  At the time when the server is playing out step 1026, the players are rendering the older step 1010.</p>
-<p><img src="https://cloud.githubusercontent.com/assets/3702763/20984519/47e3f5e8-bcc9-11e6-91a4-8a6af4977aa9.PNG" alt="interpolation"></p>
-<p>This approach has an important advantage, and an important disadvantage.  The advantage is that each player has enough information available about the future in order to render visually smooth object motion.  If a sync arrived at step 1010, and another at step 1020, then the object positions at the intermediate steps can be interpolated.  The resulting visuals are smooth.</p>
-<p>The disadvantage of this approach is that when a player input arrives on a client, the consequences of this input will only kick in at a later time, potentially causing noticeable lag between a user’s input and the visual response.  In the diagram above, an input that Player A submitted while Client A was at step 1010, will only get a visual response when Player A starts rendering objects at step 1029.</p>
-<p>The time delay between the server and the clients is a tunable parameter.  Ideally one would choose the smallest delay possible such that there is still enough sync data to interpolate to.  A temporary spike in network delays will cause the client to stop rendering and wait for new data.  In order to recover from such spikes, the client should attempt to reduce the delay gradually.</p>
-<p>Notes for the game developer:</p>
-<ol>
-<li><p>Not all game progress can be interpolated.  Bouncing off walls, shooting, etc. are &quot;atomic&quot; steps which are not interpolatable.</p>
-</li>
-<li><p>Actions which are atomic must be explicitly marked as such, otherwise the game visuals will not make sense.</p>
-</li>
-<li><p>The delay in input response may mean that a given game is not a good match for interpolated synchronization.  In that case, extrapolation should be considered.  However, there are techniques which can make interpolation work nonetheless.  Real-world input delay is about 200ms.  There may be visual tricks that make this delay acceptable.  For example if the input boosts a rocket, the game might show a visual boost light up before the rocket actually starts accelerating.</p>
-</li>
-<li><p>The game engine may not need to run on the client at all, if all the information required for rendering is available in the server sync.</p>
-</li>
-</ol>
-<p>Next: <a href="tutorial-guide_syncextrapolation.html">Extrapolation</a></p>
-</article>
+     constructor(options) {
 
-</section>
+         this.options = Object.assign({
+             traceLevel: this.TRACE_DEBUG
+         }, options);
+
+         this.traceBuffer = [];
+         this.step = 'initializing';
+
+        // syntactic sugar functions
+         this.error = this.trace.bind(this, Trace.TRACE_ERROR);
+         this.warn = this.trace.bind(this, Trace.TRACE_WARN);
+         this.info = this.trace.bind(this, Trace.TRACE_INFO);
+         this.debug = this.trace.bind(this, Trace.TRACE_DEBUG);
+         this.trace = this.trace.bind(this, Trace.TRACE_ALL);
+     }
+
+    /**
+     * Include all trace levels.
+     * @member {Number} TRACE_ALL
+     */
+     static get TRACE_ALL() { return 0; }
+
+     /**
+      * Include debug traces and higher.
+      * @member {Number} TRACE_DEBUG
+      */
+     static get TRACE_DEBUG() { return 1; }
+
+     /**
+      * Include info traces and higher.
+      * @member {Number} TRACE_INFO
+      */
+     static get TRACE_INFO() { return 2; }
+
+     /**
+      * Include warn traces and higher.
+      * @member {Number} TRACE_WARN
+      */
+     static get TRACE_WARN() { return 3; }
+
+     /**
+      * Include error traces and higher.
+      * @member {Number} TRACE_ERROR
+      */
+     static get TRACE_ERROR() { return 4; }
+
+     /**
+      * Disable all tracing.
+      * @member {Number} TRACE_NONE
+      */
+     static get TRACE_NONE() { return 1000; }
+
+     trace(level, dataCB) {
+         if (level &lt; this.options.traceLevel)
+             return;
+
+         this.traceBuffer.push({ data: dataCB(), level, step: this.step, time: new Date() });
+     }
+
+     rotate() {
+         let buffer = this.traceBuffer;
+         this.traceBuffer = [];
+         return buffer;
+     }
+
+     get length() {
+         return this.traceBuffer.length;
+     }
+
+     setStep(s) {
+         this.step = s;
+     }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
 
     </div>
 
