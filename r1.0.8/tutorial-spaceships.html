@@ -74,7 +74,7 @@ stuff will happen in your extension of GameEngine.</p>
 Steps will be executed both on the server and the client.  Each step is numbered,
 and depending on the synchronization strategy, clients may be executing a given
 step before the corresponding state data has arrived from the server (i.e. extrapolation) or after (i.e. interpolation).
-Ideally, a given step <em>N</em> represents the same point in game play on both the server
+Ideally, a given step _N_ represents the same point in game play on both the server
 and the client, and occurs at the same time.  But this is not always the case.</p>
 <h3>Server Flow:</h3><p>The server main entry point is a simple javascript file which initializes an instance of an extended <code>ServerEngine</code> class and an instance of an extended <code>GameEngine</code> class. In our tutorial the file is called <a href="https://github.com/lance-gg/spaaace/blob/master/main.js"><code>main.js</code></a>.</p>
 <p>The server engine schedules a <code>step</code> function to be called at a regular interval.  The
@@ -87,8 +87,8 @@ flow is:</p>
 </ul>
 </li>
 <li>If a game-state broadcast is needed<ul>
-<li>For each connected player P<em>i</em><ul>
-<li>transmit a &quot;world update&quot; to player P<em>i</em></li>
+<li>For each connected player P_i_<ul>
+<li>transmit a &quot;world update&quot; to player P_i_</li>
 </ul>
 </li>
 </ul>
@@ -115,8 +115,8 @@ flow is:</p>
 </ul>
 <ul>
 <li>ClientEngine - Renderer draw event<ul>
-<li>For each object in the world O<em>i</em>:<ul>
-<li>update the render objects for O<em>i</em></li>
+<li>For each object in the world O_i_:<ul>
+<li>update the render objects for O_i_</li>
 </ul>
 </li>
 </ul>
@@ -240,8 +240,8 @@ will be ignored.</p>
 <pre class="prettyprint source lang-javascript"><code>gameEngine.trace.info(`this just happened: ${foobar()}`);</code></pre><p>By default, Lance already traces a lot of information, describing
 the progress of the game and each step in detail.
 The traces are text files, written on the server side.  The server trace
-file is called <strong>server.trace</strong> and the client trace files are called <strong>client.<em>n</em>.trace</strong>
-where <strong><em>n</em></strong> is the player's id.</p>
+file is called <strong>server.trace</strong> and the client trace files are called <strong>client._n_.trace</strong>
+where <strong>_n_</strong> is the player's id.</p>
 <h3>How to enable traces</h3><p>In our tutorial example, the URL's query-string parameters become options which are
 passed to the game engine constructor.  So the client-side traces can be activated from the query string, simply by setting the parameter <code>&amp;traceLevel=0</code> on the query
 string.  </p>
