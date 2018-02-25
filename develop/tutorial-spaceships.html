@@ -50,7 +50,7 @@
 <article>
     <h1>Lance Game Tutorial</h1><p>This 30-minute tutorial will guide you in the building of a relatively simple
 javascript networked game.  It is meant as a more advanced
-tutorial, a follow-up to <a href="http://docs.lance.gg/develop/tutorial-MyFirstGame.html">My First Lance Game</a>.
+tutorial, a follow-up to <a href="tutorial-MyFirstGame.html">My First Game: Pong</a>.
 This tutorial repeats the environment setup, but goes further in-depth,
 introducing the concepts and basic components of a
 networked game,
@@ -59,12 +59,12 @@ and sequence flows on the server and the clients.</p>
 first, clone that repository to see the referenced files:</p>
 <pre class="prettyprint source lang-shell"><code>git clone https://github.com/lance-gg/spaaace
 cd spaaace
-yarn install</code></pre><h2>The Components of a Networked Game</h2><p>The networked game is architected around the following components:</p>
+npm install</code></pre><h2>The Components of a Networked Game</h2><p>The networked game is architected around the following components:</p>
 <ul>
 <li><strong>The server</strong>.  Represented by the <code>ServerEngine</code> class.</li>
 <li><strong>The clients</strong>.  Represented by the <code>ClientEngine</code> class.</li>
 <li><strong>The game logic</strong>.  Represented by the <code>GameEngine</code> class.</li>
-<li><strong>Multiple game objects</strong>.  The <code>DynamicObject</code> is the base class for all kinds of game objects.  Each game object will be associated with one or more render objects, as well as one or more physics objects.</li>
+<li><strong>Multiple game objects</strong>.  The <code>GameObject</code> is the base class for all kinds of game objects.  Each game object will be associated with one or more render objects, as well as one or more physics objects.</li>
 <li><strong>Synchronization</strong>.  Lance provides several ways to synchronize between the server and the clients.  The game developer must configure which synchronization method works best for any given game.</li>
 </ul>
 <p>As you write your game, you will need to implement
@@ -217,12 +217,12 @@ you will find that the base class provides most of the needed logic for movement
 synchronization, and that the extended classes can be quite simple.</p>
 <h2>Step 5: Putting it all together</h2><p>For the full game, you will need to create a <a href="https://github.com/lance-gg/spaaace/blob/master/package.json"><code>package.json</code></a> file, and <a href="https://github.com/lance-gg/spaaace/blob/master/index.html"><code>index.html</code></a> file,
 examples of which are available in the <a href="https://github.com/OpherV/spaaace">spaaace</a> repository.</p>
-<p>To run the server run <code>yarn run build</code> followed by <code>yarn start</code>.<br>Note that the server has two roles: <strong>(1)</strong> it acts as an HTTP server, serving index.html to clients
+<p>To run the server run <code>npm run build</code> followed by <code>npm start</code>.<br>Note that the server has two roles: <strong>(1)</strong> it acts as an HTTP server, serving index.html to clients
 which connect to the game;
 and <strong>(2)</strong> it runs the ServerEngine socket.io entry point, accepting client connections, running the server-authoritative game engine, and broadcasting updates to the clients.</p>
 <h2>Game Events</h2><p>It is good programming practice to implement your code using event handlers,
 so that it is clear what each chunk of logic is handling.</p>
-<p>The full list of events is available in the <a href="http://docs.lance.gg/develop/GameEngine.html">API GameEngine reference</a>, so we will only list the most
+<p>The full list of events is available in the <a href="GameEngine.html">API GameEngine reference</a>, so we will only list the most
 important events here.</p>
 <ul>
 <li><code>preStep</code> and <code>postStep</code> - emitted by game engine, just before and just after step execution.  The event handlers receive the step number and whether or not this step is a reenactment.</li>

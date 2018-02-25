@@ -333,7 +333,7 @@ the server.</p></div>
 
             
 
-            <td class="description last"><p>When set to &quot;render-schedule&quot; the game step scheduling is controlled by the renderer and step time is variable.  When set to &quot;fixed&quot; the game step is run independently with a fixed step time. Default is &quot;fixed&quot;.</p></td>
+            <td class="description last"><p>When set to &quot;render-schedule&quot; the game step scheduling is controlled by the renderer and step time is variable.  When set to &quot;fixed&quot; the game step is run independently with a fixed step time. Default is &quot;render-schedule&quot;.</p></td>
         </tr>
 
     
@@ -379,7 +379,7 @@ the server.</p></div>
 
             
 
-            <td class="description last"><p>amount of bending towards original client position, after each sync, for local objects</p></td>
+            <td class="description last"><p>amount (0 to 1.0) of bending towards original client position, after each sync, for local objects</p></td>
         </tr>
 
     
@@ -402,7 +402,7 @@ the server.</p></div>
 
             
 
-            <td class="description last"><p>amount of bending towards original client position, after each sync, for remote objects</p></td>
+            <td class="description last"><p>amount (0 to 1.0) of bending towards original client position, after each sync, for remote objects</p></td>
         </tr>
 
     
@@ -653,7 +653,9 @@ the server.</p></div>
 
 
 <div class="description">
-    <p>Makes a connection to the game server</p>
+    <p>Makes a connection to the game server.  Extend this method if you want to add additional
+logic on every connection. Call the super-class connect first, and return a promise which
+executes when the super-class promise completes.</p>
 </div>
 
 
@@ -758,7 +760,7 @@ the server.</p></div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line112">line 112</a>
+        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line115">line 115</a>
     </li></ul></dd>
     
 
@@ -865,7 +867,7 @@ typically at the beginning of client-side step processing (see event client__pre
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">String</span>
 
 
             
@@ -939,7 +941,7 @@ typically at the beginning of client-side step processing (see event client__pre
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line286">line 286</a>
+        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line294">line 294</a>
     </li></ul></dd>
     
 
@@ -1021,7 +1023,7 @@ typically at the beginning of client-side step processing (see event client__pre
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line154">line 154</a>
+        <a href="ClientEngine.js.html">ClientEngine.js</a>, <a href="ClientEngine.js.html#line157">line 157</a>
     </li></ul></dd>
     
 
