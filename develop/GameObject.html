@@ -262,6 +262,79 @@ or PhysicalObject.</p></div>
 
         
             
+<h4 class="name" id=".bending"><span class="type-signature">(static) </span>bending<span class="type-signature"> :Object</span></h4>
+
+
+
+
+<div class="description">
+    <p>Bending is defined as the amount of correction that will be applied
+on the client side to a given object's physical attributes, incrementally,
+by the time the next server broadcast is expected to arrive.</p>
+<p>When this percentage is 0.0, the client ignores the server object's value.
+When this percentage is 1.0, the bending is taken from the synchronization.</p>
+<p>The GameObject bending attribute is implemented as a getter, and can provide
+distinct values for:
+position: { percent, min, max }
+velocity: { percent, min, max }
+angle: { percent, min, max }
+angularVelocity: { percent, min, max }</p>
+<p>in each case, you can also provide overrides for local objects,
+these attributes will be called, respectively, positionLocal, velocityLocal,
+angleLocal, angularVelocityLocal.</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="serialize_GameObject.js.html">serialize/GameObject.js</a>, <a href="serialize_GameObject.js.html#line90">line 90</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
 <h4 class="name" id=".bendingAngleMultiple"><span class="type-signature">(static) </span>bendingAngleMultiple<span class="type-signature"> :Number</span></h4>
 
 
@@ -305,7 +378,7 @@ amount of angle bending.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="serialize_GameObject.js.html">serialize/GameObject.js</a>, <a href="serialize_GameObject.js.html#line127">line 127</a>
+        <a href="serialize_GameObject.js.html">serialize/GameObject.js</a>, <a href="serialize_GameObject.js.html#line156">line 156</a>
     </li></ul></dd>
     
 
@@ -373,7 +446,7 @@ jumps suddenly - because the game intended a jump, not a gradual bend.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="serialize_GameObject.js.html">serialize/GameObject.js</a>, <a href="serialize_GameObject.js.html#line104">line 104</a>
+        <a href="serialize_GameObject.js.html">serialize/GameObject.js</a>, <a href="serialize_GameObject.js.html#line133">line 133</a>
     </li></ul></dd>
     
 
@@ -434,7 +507,7 @@ amount of velocity bending.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="serialize_GameObject.js.html">serialize/GameObject.js</a>, <a href="serialize_GameObject.js.html#line119">line 119</a>
+        <a href="serialize_GameObject.js.html">serialize/GameObject.js</a>, <a href="serialize_GameObject.js.html#line148">line 148</a>
     </li></ul></dd>
     
 
@@ -791,7 +864,7 @@ angular velocity, and orientation.  In this case the id will be set to null.</li
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="serialize_GameObject.js.html">serialize/GameObject.js</a>, <a href="serialize_GameObject.js.html#line180">line 180</a>
+        <a href="serialize_GameObject.js.html">serialize/GameObject.js</a>, <a href="serialize_GameObject.js.html#line209">line 209</a>
     </li></ul></dd>
     
 
@@ -1209,7 +1282,7 @@ This is where renderer sub-objects and any other resources should be freed</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="serialize_GameObject.js.html">serialize/GameObject.js</a>, <a href="serialize_GameObject.js.html#line139">line 139</a>
+        <a href="serialize_GameObject.js.html">serialize/GameObject.js</a>, <a href="serialize_GameObject.js.html#line168">line 168</a>
     </li></ul></dd>
     
 
