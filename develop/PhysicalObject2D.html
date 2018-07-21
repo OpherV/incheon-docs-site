@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Game Engine - Documentation</title>
+    <title>PhysicalObject2D - Documentation</title>
 
 
     <link rel="shortcut icon" href="http://lance.gg/favicon.ico">
@@ -38,31 +38,718 @@
 
     <div id="main">
         
-        <h1 class="page-title">Game Engine</h1>
+        <h1 class="page-title">PhysicalObject2D</h1>
         
 
-        <section>
+        
 
-<header>
+
+
+
+<section>
+
+<header class="package">
+    
+        <h2>
+        PhysicalObject2D
+        </h2>
+        
+            <div class="class-description"><p>The PhysicalObject2D is the base class for physical game objects in 2D Physics</p></div>
+        
     
 </header>
 
-<article>
-    <p>The Game Engine contains the core game logic.  It understands user inputs, and applies them to the game.  It will fire missiles, hit aliens, boost spaceships, and apply magic spells.  The primary game engine method is the step method, which progresses the game from step <em>N</em> to step <em>N+1</em>, given the inputs that arrived since step <em>N-1</em>.</p>
-<p>When the game engine step has completed, each game object must have it’s new current position updated, along with health, power, and any other game attributes your game derives.</p>
-<p>It is important to take note of the following architectural requirements:</p>
-<ol>
-<li><p>The Game Engine may include some functions which will only run on the server, and these functions should be called directly by the server engine when necessary.  For example, there may be a function to handle the score reporting.  It is important to isolate server-only logic in a clear way.</p>
-</li>
-<li><p>On clients which use extrapolated synchronization, a given game step is often re-enacted following the arrival of a sync from the server.  These &quot;re-enactment&quot; steps are flagged, and the game engine must ensure that the its step method does not have any side-effects when the &quot;re-enactment&quot; flag is set.</p>
-</li>
-</ol>
-<p>Lastly, the game engine also provides a useful event emitter which reports on the progress of the game.  A typical game will use these events to trigger any required logic with specific timing. Events include pre-step, post-step, player-joined, object-added, etc.  Refer to the Events section of the API Reference for a complete list.</p>
-<p>See the <a href="GameEngine.html">GameEngine</a> implementation in the API Reference.</p>
-<p>Next: <a href="tutorial-guide_serverengine.html">Server Engine</a></p>
+<article class="package">
+    <div class="container-overview">
+    
+        
+
+    
+    <h2>Constructor</h2>
+    
+
+    <h4 class="name" id="PhysicalObject2D"><span class="type-signature"></span>new PhysicalObject2D<span class="signature">(gameEngine, options, props)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Creates an instance of a physical object.
+Override to provide starting values for position, velocity, angle and angular velocity.
+NOTE: all subclasses of this class must comply with this constructor signature.
+      This is required because the engine will create temporary instances when
+      syncs arrive on the clients.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>gameEngine</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="GameEngine.html">GameEngine</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the gameEngine this object will be used in</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>options for the new object. See <a href="GameObject.html">GameObject</a></p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>props</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>properties to be set in the new object</p>
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>position</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="TwoVector.html">TwoVector</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>position vector</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>velocity</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="TwoVector.html">TwoVector</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>velocity vector</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>angle</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>orientation angle</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>mass</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>the mass</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>angularVelocity</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>angular velocity</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="serialize_PhysicalObject2D.js.html">serialize/PhysicalObject2D.js</a>, <a href="serialize_PhysicalObject2D.js.html#line9">line 9</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id=".netScheme"><span class="type-signature">(static) </span>netScheme<span class="type-signature"> :Object</span></h4>
+
+
+
+
+<div class="description">
+    <p>The netScheme is a dictionary of attributes in this game
+object.  The attributes listed in the netScheme are those exact
+attributes which will be serialized and sent from the server
+to each client on every server update.
+The netScheme member is implemented as a getter.</p>
+<p>You may choose not to implement this method, in which
+case your object only transmits the default attributes
+which are already part of <a href="PhysicalObject2D.html">PhysicalObject2D</a>.
+But if you choose to add more attributes, make sure
+the return value includes the netScheme of the super class.</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="serialize_PhysicalObject2D.js.html">serialize/PhysicalObject2D.js</a>, <a href="serialize_PhysicalObject2D.js.html#line11">line 11</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>static get netScheme() {
+      return Object.assign({
+          mojo: { type: BaseTypes.TYPES.UINT8 },
+        }, super.netScheme);
+    }</code></pre>
+
+
+
+        
+            
+<h4 class="name" id="bending"><span class="type-signature"></span>bending<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>Each object class can define its own bending overrides.
+return an object which can include attributes: position, velocity,
+angle, and angularVelocity.  In each case, you can specify a min value, max
+value, and a percent value.</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="serialize_PhysicalObject2D.js.html">serialize/PhysicalObject2D.js</a>, <a href="serialize_PhysicalObject2D.js.html#line113">line 113</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="onAddToWorld"><span class="type-signature"></span>onAddToWorld<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Called after the object is added to to the game world.
+This is the right place to add renderer sub-objects, physics sub-objects
+and any other resources that should be created</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="serialize_PhysicalObject2D.js.html">serialize/PhysicalObject2D.js</a>, <a href="serialize_PhysicalObject2D.js.html#line88">line 88</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="toString"><span class="type-signature"></span>toString<span class="signature">()</span><span class="type-signature"> &rarr; {String}</span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Formatted textual description of the dynamic object.
+The output of this method is used to describe each instance in the traces,
+which significantly helps in debugging.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="serialize_PhysicalObject2D.js.html">serialize/PhysicalObject2D.js</a>, <a href="serialize_PhysicalObject2D.js.html#line97">line 97</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>description - a string describing the PhysicalObject2D</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">String</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+    
+
+    
+
+    
 </article>
 
 </section>
+
+
+
 
     </div>
 
