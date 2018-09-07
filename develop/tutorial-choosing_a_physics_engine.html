@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Introduction - Documentation</title>
+    <title>Choosing a Physics Engine - Documentation</title>
 
 
     <link rel="shortcut icon" href="http://lance.gg/favicon.ico">
@@ -38,7 +38,7 @@
 
     <div id="main">
         
-        <h1 class="page-title">Introduction</h1>
+        <h1 class="page-title">Choosing a Physics Engine</h1>
         
 
         <section>
@@ -48,42 +48,34 @@
 </header>
 
 <article>
-    <p><a href="https://travis-ci.org/lance-gg/lance"><img src="https://travis-ci.org/lance-gg/lance.svg?branch=master" alt="Build Status"></a> <a href="http://inch-ci.org/github/lance-gg/lance"><img src="http://inch-ci.org/github/lance-gg/lance.svg?branch=develop" alt="Inline docs"></a>
-<a href="http://slack.lance.gg"><img src="http://slack.lance.gg/badge.svg" alt="Slack"></a></p>
-<p><img src="https://cloud.githubusercontent.com/assets/3951311/24590344/0b7748b8-17f4-11e7-84fc-d24c44c7a27a.jpg" style="width: 100%" alt="Lance logo"></p>
-<h1><a href="http://lance.gg">Lance</a> is a real-time multiplayer game server</h1><p>Lance provides an extendible Node.JS based server, on which game logic runs, as well as a client-side library
-which synchronizes the client's game state with the server game state.  In order
-to provide a smooth visual experience for each connected client, Lance implements
-efficient networking methods, position interpolation and extrapolation, user input
-coordination, shadow objects, physics and pseudo-physical movement, automatic
-handling of network spikes.</p>
-<p>Lance aims to optimize the player's visual experience, while providing
-a simple development model which is highly configurable and easy to analyze
-and debug.</p>
-<h2>See it in action</h2><p>Check out the official demo: <a href="http://spaaace.herokuapp.com">Spaaace</a></p>
-<p><img src="https://cloud.githubusercontent.com/assets/3951311/21784604/ffc2d282-d6c4-11e6-97f0-0ada12c4fab7.gif" alt="spaaace"></p>
-<h2>Features:</h2><ul>
-<li>Focus on writing your game. Lance takes care of the netcode</li>
-<li>Can support any type of game or genre  </li>
-<li>Optimized networking<ul>
-<li>TCP via websockets</li>
-<li>Communication is packed and serialized into binary</li>
-<li>Automatic handling of network spikes with step correction</li>
+    <p>There are many different kinds of multiplayer games, and different games have different approaches to physics.  Lance supports three basic physics models.</p>
+<ul>
+<li><strong>2D Simple Physics</strong>: A pseudo-physics arcade mode, which only tracks position, velocity, and angle for each object.</li>
+<li><strong>2D Physics Engine</strong>: A true physics engine mode, based on the engine <a href="https://github.com/schteppe/p2.js">P2</a>.</li>
+<li><strong>3D Physics Engine</strong>: A true 3D physics engine mode, based on the engine <a href="https://github.com/schteppe/cannon.js/">Cannon</a>.</li>
 </ul>
-</li>
-<li>Intelligent synchronization strategies for lag handling<ul>
-<li>Extrapolation (client side prediction) with step re-enactment, or:</li>
-<li>Interpolation for optimal object motion</li>
-</ul>
-</li>
-<li>Tools for debugging and tracing</li>
-</ul>
-<h2>That's so neat! Where do I start?</h2><p>To get a bird's eye view on what's Lance all about and how to use it to make a multiplayer game, we recommend reading the guide: <a href="tutorial-overview_architecture.html">Architecture of a Multiplayer Game</a></p>
-<p>If you're more of the learning-by-doing type, you can start with the first tutorial,  <a href="tutorial-MyFirstGame.html">My First Game: Pong</a> which contains step-by-step instructions on how to implement a networked version of this classic game.</p>
-<h2>Join the fun!</h2><p>We are working hard to build an active, positive and inclusive <a href="tutorial-introduction_community.html">Community</a></p>
-<h2>Need help?</h2><p>If you're not exactly sure how to do something, <a href="http://stackoverflow.com/questions/tagged/lance">Stack Overflow</a> is your friend.</p>
-<p>If you've encountered a bug and it's not already in the <a href="https://github.com/lance-gg/lance/issues">issues page</a>, open a new issue.</p>
-<h2>Built something cool with Lance?</h2><p>Please <a href="http://www.twitter.com/opherv">Let us know</a>! We'd love to play it, and feature it on the <a href="http://lance.gg">Lance homepage</a>.</p>
+<h2>2D Simple Physics</h2><p>This is probably the most common mode, and is appropriate for 2D games which don't need a real physics engine.  Consider arcade games, fighting/brawler games, dungeon room games, platform, shooter, RPG, RTS, and runners.  In all these cases, the game code doesn't require true physics.  Instead, physical aspects such as position, velocity, and collisions are easily implemented using simple game logic.  Even jumping from one platform to the next can be implemented as a sequence of height changes.</p>
+<p>In fact, many of these games are more fun to play using simplified (or pseudo) physics as they become more deterministic and predictable to the player.</p>
+<p>In order to use simple physics in Lance, you will need to initialize a <code>SimplePhysicsEngine</code> instance in the <code>GameEngine</code> constructor.  In addition, all game object classes must extend the <code>DynamicObject</code> class.</p>
+<p>For example:</p>
+<pre class="prettyprint source lang-javascript"><code>export default class Simple2DGameEngine extends GameEngine {
+
+    constructor(options) {
+        super(options);
+        this.physicsEngine = new SimplePhysicsEngine({
+            gameEngine: this,
+            collisions: {
+                type: 'brute'
+            }
+        });
+    }
+}</code></pre><p>See the sample game <a href="https://github.com/lance-gg/spaaace">Spaaace</a> to see how this is done.</p>
+<h2>2D Real Physics</h2><p>Games which require true physics in 2D can use this mode.  In order to use real physics in 2D, you will need to initialize an instance of <code>P2PhysicsEngine</code> in the <code>GameEngine</code> constructor.  The underlying physics engine used in this case is P2.  A very lightweight 2D physics engine.  All game object classes must extend the <code>PhysicalObject2D</code> base class.</p>
+<p>See the sample game <a href="https://github.com/lance-gg/asteroids">Asteroids</a> to see how this is done.  Also, you may want to compare Spaaace and Asteroids to see how the game experience changes from pseudo-physics to real physics.</p>
+<h2>3D Real Physics</h2><p>3D physics games are not common.  In fact, many games which appear to be 3D physics games are in fact 2.5D pseudo-physics games.  In those cases, the map is really a two dimensional map, but the objects are allowed to also have a height.  The lance 3D physics mode uses the native javascript Cannon physics engine, written by Schteppe.</p>
+<p>To use 3D real physics, initialize an instance of <code>P2PhysicsEngine</code> in the <code>GameEngine</code> constructor.  All game object classes must extend the <code>PhysicalObject3D</code> base class.</p>
+<p>See <a href="https://github.com/lance-gg/sprocketleague">SprocketLeague</a> for a sample implementation.</p>
+<p>Next: <a href="tutorial-guide_gameengine.html">Game Engine</a></p>
 </article>
 
 </section>
