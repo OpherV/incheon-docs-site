@@ -268,18 +268,14 @@ or PhysicalObject.</p></div>
 
 
 <div class="description">
-    <p>Bending is defined as the amount of correction that will be applied
+    <p>Bending is defined as the amount of error correction that will be applied
 on the client side to a given object's physical attributes, incrementally,
 by the time the next server broadcast is expected to arrive.</p>
-<p>When this percentage is 0.0, the client ignores the server object's value.
-When this percentage is 1.0, the bending is taken from the synchronization.</p>
+<p>When this percentage is 0.0, the client always ignores the server object's value.
+When this percentage is 1.0, the server object's attributes will be applied in full.</p>
 <p>The GameObject bending attribute is implemented as a getter, and can provide
-distinct values for:
-position: { percent, min, max }
-velocity: { percent, min, max }
-angle: { percent, min, max }
-angularVelocity: { percent, min, max }</p>
-<p>in each case, you can also provide overrides for local objects,
+distinct values for position, velocity, angle, and angularVelocity.
+And in each case, you can also provide overrides for local objects,
 these attributes will be called, respectively, positionLocal, velocityLocal,
 angleLocal, angularVelocityLocal.</p>
 </div>
@@ -330,6 +326,18 @@ angleLocal, angularVelocityLocal.</p>
 
 
 
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>get bending() {
+  return {
+    position: { percent: 1.0, min: 0.0 },
+    velocity: { percent: 0.0, min: 0.0 },
+    angularVelocity: { percent: 0.0 },
+    angleLocal: { percent: 1.0 }
+  }
+};</code></pre>
 
 
 
@@ -674,7 +682,7 @@ angular velocity, and orientation.  In this case the id will be set to null.</li
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="serialize_GameObject.js.html">serialize/GameObject.js</a>, <a href="serialize_GameObject.js.html#line178">line 178</a>
+        <a href="serialize_GameObject.js.html">serialize/GameObject.js</a>, <a href="serialize_GameObject.js.html#line184">line 184</a>
     </li></ul></dd>
     
 
@@ -1092,7 +1100,7 @@ This is where renderer sub-objects and any other resources should be freed</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="serialize_GameObject.js.html">serialize/GameObject.js</a>, <a href="serialize_GameObject.js.html#line137">line 137</a>
+        <a href="serialize_GameObject.js.html">serialize/GameObject.js</a>, <a href="serialize_GameObject.js.html#line143">line 143</a>
     </li></ul></dd>
     
 
