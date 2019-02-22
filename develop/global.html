@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Architecture of a Multiplayer Game - Documentation</title>
+    <title>Global - Documentation</title>
 
 
     <link rel="shortcut icon" href="http://lance.gg/favicon.ico">
@@ -38,104 +38,160 @@
 
     <div id="main">
         
-        <h1 class="page-title">Architecture of a Multiplayer Game</h1>
+        <h1 class="page-title">Global</h1>
         
 
-        <section>
+        
 
-<header>
+
+
+
+<section>
+
+<header class="package">
+    
+        <h2>
+        
+        </h2>
+        
     
 </header>
 
-<article>
-    <p>The architecture of a multiplayer game must meet the requirements and challenges presented in the prologue &quot;why is making a multiplayer game so hard&quot;.  The architecture cannot wish away these facts: that network delays exist, the delay durations are not consistent or predictable, that players can suddenly disconnect, or that client code cannot be trusted.</p>
-<p>These requirements lead to some basic architectural principles:</p>
-<ol>
-<li><p>Each game instance will have a single server where the actual game progress and decisions are played out.</p>
-</li>
-<li><p>A client will always be out-of-sync with the server, and will need to be able to adjust itself to server decisions.</p>
-</li>
-<li><p>In order to provide a smooth playing experience, a client will need to implement either some predictive calculation (extrapolation), or otherwise present a somewhat out-of-date state to the end user (interpolation).</p>
-</li>
-</ol>
-<p>The main components of a networked game are:</p>
-<ul>
-<li><p>The <strong>clients</strong>. Represented in Lance by multiple instances of the <strong>ClientEngine</strong> class.  Clients collect inputs from the player and send them to the server.</p>
-</li>
-<li><p>The <strong>server</strong>. Represented in Lance by a singleton instance of the <strong>ServerEngine</strong> class.  The server handles the user inputs, and sends updates to all clients.</p>
-</li>
-<li><p>The <strong>game logic</strong>. Represented in Lance by the  <strong>GameEngine</strong> class.</p>
-</li>
-<li><p>The <strong>game world</strong>, which includes multiple <strong>game objects</strong>. The Lance <strong>GameObject</strong> is the base class for all kinds of game objects.</p>
-</li>
-<li><p>The <strong>renderer</strong>.  A component which draws the game visuals on every iteration of the render loop.  In Lance this is represented by the <strong>Renderer</strong> class.</p>
-</li>
-<li><p><strong>Synchronization</strong>. Lance provides several ways to synchronize between the server and the clients. The game developer must configure which synchronization method works best for their specific game and use case.</p>
-</li>
-</ul>
-<p>As you develop  your game, you will need to implement your own extensions (sub-classes) of the classes above. The core game logic will be implemented in your extension of GameEngine.</p>
-<p>The following diagram shows how these components connect in the overall architecture:</p>
-<p><img src="https://user-images.githubusercontent.com/3702763/36915030-e4612af8-1e57-11e8-81d5-fca3855d6fe5.jpg" alt="architecture"></p>
-<h2>The Game as a Sequence of Steps</h2><p>The basic flow of a game can be seen as a sequence of <em>game steps</em>.  This is a basic concept which is true
-for game development generally, and the concept works well for networked games as well.  During a single step, the
-game progresses from time <em>T</em> to time <em>T + δt</em>.  The game engine will have to determine the state of the game
-at time <em>T + δt</em> by applying physics, taking account of new user inputs, and applying the game mechanics logic.</p>
-<p>In the context of multiplayer, networked games, the steps will be executed both on the server and the client. Each step is numbered, and depending on the synchronization strategy, clients may be executing a given step before the corresponding server information has arrived at the client (i.e. extrapolation) or after (i.e. interpolation). Ideally, a given step <em>N</em> represents the same point in game play on both the server and the client.</p>
-<p>The core game logic is implemented in the game engine, so a game step is simply a call to the game engine’s <code>GameEngine::step()</code> method.</p>
-<h2>Server Flow</h2><p>The server logic is implemented by the server engine, which must do the following: (1) it must initialize the game, (2) it must accept connections from players over a socket, (3) it must execute the game loop, by calling the game engine’s <code>GameEngine::step()</code> method at a fixed interval, and (4) it must broadcast regular updates to all the clients at a fixed interval.</p>
-<p>The server engine schedules a step function to be called at a regular interval. The flow is:</p>
-<ul>
-<li><p>ServerEngine - <em>start of a single server step</em></p>
-<ul>
-<li><p>GameEngine - read and process any inputs that arrived from clients since the previous step.  The inputs are handled by the <code>GameEngine::processInput()</code> method.</p>
-</li>
-<li><p>GameEngine - <em>start of a single game step</em></p>
-<ul>
-<li>PhysicsEngine - handle physics step</li>
-</ul>
-</li>
-<li><p>If it is time to broadcast a new sync</p>
-<ul>
-<li>for each player: transmit a &quot;world update&quot;</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2>Client Flow</h2><p>The client flow is more complicated than the server, for two reasons.  First it must listen to syncs which have arrived from the server, and reconcile the data with its own game state.  Second, it must invoke the renderer to draw the game state.</p>
-<ul>
-<li><p>ClientEngine - <em>start of a single client step</em></p>
-<ul>
-<li><p>check inbound messages / syncs</p>
-</li>
-<li><p>capture user inputs that have occurred since previous step.  Inputs are sent to the server by calling the method <code>ClientEngine::sendInput()</code>.</p>
-</li>
-<li><p>transmit user inputs to server</p>
-</li>
-<li><p>apply user inputs locally</p>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>ClientEngine - <em>start of a single render step</em></p>
-<ul>
-<li><p>Renderer - draw event</p>
-<ul>
-<li><p>GameEngine - <em>start of a single game step</em> - may need to be executed zero or more times, depending on the number of steps which should have taken place since the last render draw event</p>
-<ul>
-<li>PhysicsEngine - handle physics step</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>Next: <a href="tutorial-choosing_a_physics_engine.html">Choosing a Physics Engine</a></p>
+<article class="package">
+    <div class="container-overview">
+    
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="DEFAULT_ROOM_NAME"><span class="type-signature"></span>DEFAULT_ROOM_NAME<span class="type-signature"> :String</span></h4>
+
+
+
+
+<div class="description">
+    <p>Default room name</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ServerEngine.js.html">ServerEngine.js</a>, <a href="ServerEngine.js.html#line68">line 68</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+
+    
 </article>
 
 </section>
+
+
+
 
     </div>
 
